@@ -1,4 +1,5 @@
 import { generalTools } from "@/data/content";
+import Link from "next/link";
 import React from "react";
 import { CgMenuGridR } from "react-icons/cg";
 
@@ -14,7 +15,7 @@ export default function Tools() {
                         {
                             i.tools.map((t)=>(
                                 <div key={t.id} className="flex-col gap-4">
-                                    <ToolItem color={t.color} bg={t.bg} />
+                                    <ToolItem href={t.url} title={t.name} color={t.color} bg={t.bg} />
                                 </div>
                             ))
                         }
@@ -26,17 +27,17 @@ export default function Tools() {
 }
 
 
-function ToolItem({ title = 'Compress PDF' , color, bg, icon = <CgMenuGridR />})
+function ToolItem({ title = 'Compress PDF' , color, bg, icon = <CgMenuGridR />,href})
 {
     
     const Icon = React.cloneElement(icon, { className: `${color} group-hover:text-white` , size : 24});
     
 
     return (
-        <div className={`gap-1 flex cursor-pointer items-center ${bg} justify-start p-2 rounded-sm  group`}>
+        <Link href={'/tools/'+href} className={`gap-1 flex cursor-pointer items-center ${bg} justify-start p-2 rounded-sm  group`}>
             {Icon}
             <p className="text-sm font-bold group-hover:text-white">{title}</p>
-        </div>
+        </Link>
     )
 
 }

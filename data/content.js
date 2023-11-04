@@ -114,180 +114,118 @@ const generalTools = [
 
     {
         id:1,
-        title:'Convert & Compress',
+        title:'Finance',
         tools:[
             { 
                 id:1,
-                name:'Compress PDF',
+                name:'Tax Returns',
                 icon:<CgMenuGridR />,
                 color:'text-red-600',
                 bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Tax Returns',
+                    subtitle:'We Do Tax returns',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
             },
             { 
-                id:2,
-                name:'Compress PDF',
+                id:1,
+                name:'Tax Returns',
                 icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Tax Returns',
+                    subtitle:'We Do Tax returns',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
             },
             { 
-                id:3,
-                name:'Compress PDF',
+                id:1,
+                name:'Tax Returns',
                 icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Tax Returns',
+                    subtitle:'We Do Tax returns',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Tax Returns',
+                icon:<CgMenuGridR />,
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Tax Returns',
+                    subtitle:'We Do Tax returns',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
             },
         ]
     },
     {
-        id:2,
-        title:'Split & Merge',
+        id:1,
+        title:'Banking',
         tools:[
             { 
                 id:1,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-red-600',
-                bg:'hover:bg-red-600',
-            },
-            { 
-                id:2,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
+                name:'Financial Statements',
                 icon:<CgMenuGridR />,
                 color:'text-green-600',
                 bg:'hover:bg-green-600',
+                url:'banking',
+                page:{
+                    title:'Financial Statements',
+                    subtitle:'We Do Financial Statements',
+                    bg:'bg-green-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
             },
+            
         ]
     },
-    {
-        id:3,
-        title:'Convert & Compress',
-        tools:[
-            { 
-                id:1,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-red-600',
-                bg:'hover:bg-red-600',
-            },
-            { 
-                id:2,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-        ]
-    },
-    {
-        id:4,
-        title:'Split & Merge',
-        tools:[
-            { 
-                id:1,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-red-600',
-                bg:'hover:bg-red-600',
-            },
-            { 
-                id:2,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-        ]
-    },
-    {
-        id:4,
-        title:'Split & Merge',
-        tools:[
-            { 
-                id:1,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-red-600',
-                bg:'hover:bg-red-600',
-            },
-            { 
-                id:2,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-        ]
-    },
-    {
-        id:4,
-        title:'Split & Merge',
-        tools:[
-            { 
-                id:1,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-red-600',
-                bg:'hover:bg-red-600',
-            },
-            { 
-                id:2,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-blue-600',
-                bg:'hover:bg-blue-600',
-            },
-            { 
-                id:3,
-                name:'Compress PDF',
-                icon:<CgMenuGridR />,
-                color:'text-green-600',
-                bg:'hover:bg-green-600',
-            },
-        ]
-    },
+   
 ]
 
 const footerMenus = [

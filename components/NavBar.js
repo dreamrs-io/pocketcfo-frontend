@@ -64,7 +64,7 @@ function ToolMenu() {
                     </Menu.Button>
                     
                 </div>
-                <Menu.Items className="absolute right-0 top-[56px] bg-white w-full border">
+                <Menu.Items className="absolute right-0 top-[56px] bg-white w-full border z-20">
                     <div className=" p-6">
                         <div className="max-w-7xl mx-auto">
                             <Tools/>
