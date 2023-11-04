@@ -6,7 +6,7 @@ export default function Tools() {
 
     return (
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 ">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 ">
             {
                 generalTools.map((i)=>(
                     <div key={i.id}>

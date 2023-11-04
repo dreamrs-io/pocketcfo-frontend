@@ -34,7 +34,7 @@ export default function Home() {
             <Pricing/>
             <Reason/>
             <div className="border-t">
-                <div className="max-w-7xl mx-auto my-10 p-6">
+                <div className="max-w-7xl mx-auto my-10 p-2 lg:p-6">
                     <Tools/>
                 </div>
             </div>
