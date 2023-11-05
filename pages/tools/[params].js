@@ -8,6 +8,7 @@ import excel from '@/public/assets/excel.svg'
 
 import { HiOutlineLightBulb } from "react-icons/hi";
 import Image from "next/image";
+import Head from "next/head";
 
 
 
@@ -17,6 +18,19 @@ export default function ConversionTool({ toolData }) {
 
     return (
         <ConversionLayout>
+            <Head>
+                <title>{toolData.name}</title>
+                <meta name="description" content= 'Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <meta property="og:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <meta name="twitter:title" content={toolData.name} />
+                <meta property="og:title" content={toolData.name} />
+                <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                {/* <meta property="og:image" content=''/>
+                <meta property="og:image:width" content="400" />
+                <meta property="og:image:height" content="400" /> */}
+                {/* <meta name="twitter:card" content="summary_large_image" /> */}
+                {/* <meta name="twitter:image" content={ogimgurl} /> */}
+            </Head>
             <FileInput toolData={toolData} />
             <div className="max-w-6xl mx-auto lg:grid-cols-3 grid sm:grid-cols-2 gap-y-8 my-24  ">
                 <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">

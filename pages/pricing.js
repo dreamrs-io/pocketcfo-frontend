@@ -1,4 +1,5 @@
 import ConversionLayout from "@/layouts/ConversionLayout";
+import Head from "next/head";
 import { useState } from "react";
 import { AiOutlineTeam } from "react-icons/ai";
 import { FiUser } from "react-icons/fi";
@@ -8,6 +9,19 @@ export default function Pricing(){
 
     return (
         <ConversionLayout>
+            <Head>
+                <title>Pricing</title>
+                <meta name="description" content= 'Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <meta property="og:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <meta name="twitter:title" content='pricing' />
+                <meta property="og:title" content='pricing' />
+                <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                {/* <meta property="og:image" content=''/>
+                <meta property="og:image:width" content="400" />
+                <meta property="og:image:height" content="400" /> */}
+                {/* <meta name="twitter:card" content="summary_large_image" /> */}
+                {/* <meta name="twitter:image" content={ogimgurl} /> */}
+            </Head>
             <div className="mx-auto max-w-6xl my-12">
                 <h2 className="text-center mb-4">Pocket CFO&apos;s That Fits Your Budget </h2>
                 <div className="flex justify-center">
