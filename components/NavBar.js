@@ -4,6 +4,7 @@ import React from "react"
 import {CgMenuGridR} from "react-icons/cg"
 import {HiMenu} from "react-icons/hi"
 import Tools from "./Tools"
+import Link from "next/link"
 
 export default function NavBar() {
     return (
@@ -25,7 +26,7 @@ export default function NavBar() {
                 <div className="flex gap-6 ml-6 items-center">
                     <ul className="hidden sm:flex items-center gap-6  ">
                         <li className="link">Templates</li>
-                        <li className="link">Pricing</li>
+                        <Link href={'/pricing'} className="link">Pricing</Link>
                         <li className="link">Teams</li>
                     </ul>
                     <ul className="hidden md:flex items-center gap-4 border-l pl-4">
