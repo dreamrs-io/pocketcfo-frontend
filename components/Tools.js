@@ -7,7 +7,7 @@ export default function Tools() {
 
     return (
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 ">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 ">
             {
                 generalTools.map((i)=>(
                     <div key={i.id}>
@@ -15,7 +15,7 @@ export default function Tools() {
                         {
                             i.tools.map((t)=>(
                                 <div key={t.id} className="flex-col gap-4">
-                                    <ToolItem href={t.url} title={t.name} color={t.color} bg={t.bg} />
+                                    <ToolItem href={t.url} title={t.name} color={t.color} bg={t.bg} childHref={t.page.url} />
                                 </div>
                             ))
                         }
@@ -27,14 +27,14 @@ export default function Tools() {
 }
 
 
-function ToolItem({ title = 'Compress PDF' , color, bg, icon = <CgMenuGridR />,href})
+function ToolItem({ title = 'Compress PDF' , color, bg, icon = <CgMenuGridR />,href,childHref})
 {
     
     const Icon = React.cloneElement(icon, { className: `${color} group-hover:text-white` , size : 24});
     
 
     return (
-        <Link href={'/tools/'+href} className={`gap-1 flex cursor-pointer items-center ${bg} justify-start p-2 rounded-sm  group`}>
+        <Link href={'/tools/'+href+'/'+childHref} className={`gap-1 flex cursor-pointer items-center ${bg} justify-start p-2 rounded-sm  group`}>
             {Icon}
             <p className="text-sm font-bold group-hover:text-white">{title}</p>
         </Link>

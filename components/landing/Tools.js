@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { sectionTools } from '@/data/content';
 export default function LTools (){
     return (
-        <div className="max-w-5xl mx-auto p-10 ">
+        <div className="max-w-5xl mx-auto p-10  ">
             <div className="text-center">
                 <h2>Most Popular PDF Tools</h2>
                 <p className="mt-4">21 tools to convert, compress, and edit PDFs for free. Try it out today!</p>

@@ -94,6 +94,8 @@ export default function ConversionTool({ toolData }) {
 export async function getServerSideProps(context) {
     const { params } = context;
 
+    console.log(params);
+
     const toolData = await fetchToolData(params.params);
     return {
         props: {

@@ -114,18 +114,41 @@ const generalTools = [
 
     {
         id:1,
-        title:'Finance',
+        title:'Convert To Tax Returns',
         tools:[
             { 
                 id:1,
-                name:'Tax Returns',
+                name:'Income Statement',
+                icon:<CgMenuGridR />,
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-return',
+                page:{
+                    title:'Income Statement',
+                    subtitle:'We Do Tax returns',
+                    url:'income-statement',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:'',
+                       
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Balance Sheet',
                 icon:<CgMenuGridR />,
                 color:'text-red-600',
                 bg:'hover:bg-red-600',
                 url:'tax-returns',
                 page:{
-                    title:'Tax Returns',
+                    title:'Balance Sheet',
                     subtitle:'We Do Tax returns',
+                    url:'balance-sheet',
                     bg:'bg-red-600',
                     fileIcon:'',
                     seo:{
@@ -138,14 +161,15 @@ const generalTools = [
             },
             { 
                 id:1,
-                name:'Tax Returns',
+                name:'Cash Flow Statement',
                 icon:<CgMenuGridR />,
                 color:'text-red-600',
                 bg:'hover:bg-red-600',
                 url:'tax-returns',
                 page:{
-                    title:'Tax Returns',
+                    title:'Cash Flow Statement',
                     subtitle:'We Do Tax returns',
+                    url:'cash-flow-statement',
                     bg:'bg-red-600',
                     fileIcon:'',
                     seo:{
@@ -158,14 +182,15 @@ const generalTools = [
             },
             { 
                 id:1,
-                name:'Tax Returns',
+                name:'Balance Statements',
                 icon:<CgMenuGridR />,
                 color:'text-red-600',
                 bg:'hover:bg-red-600',
                 url:'tax-returns',
                 page:{
-                    title:'Tax Returns',
-                    subtitle:'We Do Tax returns',
+                    title:'Balance Statements',
+                    subtitle:'We Do Balance Statements',
+                    url:'balance-statements',
                     bg:'bg-red-600',
                     fileIcon:'',
                     seo:{
@@ -178,14 +203,78 @@ const generalTools = [
             },
             { 
                 id:1,
-                name:'Tax Returns',
+                name:'Receipts',
                 icon:<CgMenuGridR />,
                 color:'text-red-600',
                 bg:'hover:bg-red-600',
                 url:'tax-returns',
                 page:{
-                    title:'Tax Returns',
-                    subtitle:'We Do Tax returns',
+                    title:'Receipts',
+                    subtitle:'We Do Receipts',
+                    bg:'bg-red-600',
+                    url:'receipts',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Invoicing and Billing',
+                icon:<CgMenuGridR />,
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Invoicing and Billing',
+                    subtitle:'We Do Invoicing and Billing',
+                    url:'invoicing-billing',
+                    bg:'bg-red-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Purchase Orders',
+                icon:<CgMenuGridR />,
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Purchase Orders',
+                    subtitle:'We Do Purchase Orders',
+                    bg:'bg-red-600',
+                    url:'purchase-orders',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Payroll Records',
+                icon:<CgMenuGridR />,
+                color:'text-red-600',
+                bg:'hover:bg-red-600',
+                url:'tax-returns',
+                page:{
+                    title:'Payroll Records',
+                    subtitle:'We Do Payroll Records',
+                    url:'payroll-records',
                     bg:'bg-red-600',
                     fileIcon:'',
                     seo:{
@@ -200,18 +289,124 @@ const generalTools = [
     },
     {
         id:1,
-        title:'Banking',
+        title:'Convert to Financial Statements',
         tools:[
             { 
                 id:1,
-                name:'Financial Statements',
+                name:'Tax Returns and Filings',
                 icon:<CgMenuGridR />,
                 color:'text-green-600',
                 bg:'hover:bg-green-600',
-                url:'banking',
+                url:'financial-statements',
                 page:{
-                    title:'Financial Statements',
-                    subtitle:'We Do Financial Statements',
+                    title:'Tax Returns and Filings',
+                    subtitle:'We Do Tax Returns and Filings',
+                    url:'tax-returns-filings',
+                    bg:'bg-green-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Balance Statements',
+                icon:<CgMenuGridR />,
+                color:'text-green-600',
+                bg:'hover:bg-green-600',
+                url:'financial-statements',
+                page:{
+                    title:'Balance Statements',
+                    subtitle:'We Do Balance Statements',
+                    url:'balance-statements',
+                    bg:'bg-green-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Receipts',
+                icon:<CgMenuGridR />,
+                color:'text-green-600',
+                bg:'hover:bg-green-600',
+                url:'financial-statements',
+                page:{
+                    title:'Receipts',
+                    subtitle:'We Do Receipts',
+                    bg:'bg-green-600',
+                    url:'receipts',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Invoicing and Billing',
+                icon:<CgMenuGridR />,
+                color:'text-green-600',
+                bg:'hover:bg-green-600',
+                url:'financial-statements',
+                page:{
+                    title:'Invoicing and Billing',
+                    subtitle:'We Do Invoicing and Billing',
+                    url:'invoicing-billing',
+                    bg:'bg-green-600',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Purchase Orders',
+                icon:<CgMenuGridR />,
+                color:'text-green-600',
+                bg:'hover:bg-green-600',
+                url:'financial-statements',
+                page:{
+                    title:'Purchase Orders',
+                    subtitle:'We Do Purchase Orders',
+                    bg:'bg-green-600',
+                    url:'purchase-orders',
+                    fileIcon:'',
+                    seo:{
+                        title:'',
+                        description:'',
+                        image:''
+                    }
+
+                },
+            },
+            { 
+                id:1,
+                name:'Payroll Records',
+                icon:<CgMenuGridR />,
+                color:'text-green-600',
+                bg:'hover:bg-green-600',
+                url:'financial-statements',
+                page:{
+                    title:'Payroll Records',
+                    subtitle:'We Do Payroll Records',
+                    url:'payroll-records',
                     bg:'bg-green-600',
                     fileIcon:'',
                     seo:{

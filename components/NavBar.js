@@ -14,18 +14,18 @@ export default function NavBar() {
                     <Logo />
                     <ul className="flex gap-4 ml-2 ">
                         <li className=""><ToolMenu /></li>
-                        <div className="hidden flex-wrap gap-4 max-h-4 sm:flex items-center">
+                        {/* <div className="hidden flex-wrap gap-4 max-h-4 sm:flex items-center">
                             <li className="link">Compress</li>
                             <li className="link">Convert</li>
                             <li className="link">Merge</li>
                             <li className="link">Edit</li>
                             <li className="link">Sign</li>
-                        </div>
+                        </div> */}
                     </ul>
                 </div>
                 <div className="flex gap-6 ml-6 items-center">
                     <ul className="hidden sm:flex items-center gap-6  ">
-                        <li className="link">Templates</li>
+                        {/* <li className="link">Templates</li> */}
                         <Link href={'/pricing'} className="link">Pricing</Link>
                         <li className="link">Teams</li>
                     </ul>
@@ -67,7 +67,7 @@ function ToolMenu() {
                 </div>
                 <Menu.Items className="absolute right-0 top-[56px] bg-white w-full border z-20">
                     <div className=" p-6">
-                        <div className="max-w-7xl mx-auto">
+                        <div className="max-w-7xl mx-auto ">
                             <Tools/>
                         </div>
                     </div>
