@@ -1,6 +1,6 @@
 import { Menu } from "@headlessui/react"
 import Image from "next/image"
-import React from "react"
+import React, { useRef } from "react"
 import {CgMenuGridR} from "react-icons/cg"
 import {HiMenu} from "react-icons/hi"
 import Tools from "./Tools"
@@ -54,21 +54,29 @@ function Logo() {
 
 
 function ToolMenu() {
+
+    const buttonARef = useRef(null);
+  
+    const handleButtonClickB = () => {
+        if (buttonARef.current) {
+            buttonARef.current.click(); // Simulate a click on button A when button B is clicked
+        }
+    }
     return (
         <div>
-            <Menu as="div" className="inline-block text-left">
+            <Menu  as="div" className="inline-block text-left">
                 <div>
-                    <Menu.Button className="link flex items-center gap-[2px] ">
+                    <Menu.Button ref={buttonARef} className="link flex items-center gap-[2px] ">
                         <CgMenuGridR size={24}/>
                         <p className=" hidden sm:block">Tools</p>
 
                     </Menu.Button>
                     
                 </div>
-                <Menu.Items className="absolute right-0 top-[56px] bg-white w-full border z-20">
+                <Menu.Items  className="absolute right-0 top-[56px] bg-white w-full border z-20">
                     <div className=" p-6">
-                        <div className="max-w-7xl mx-auto ">
-                            <Tools/>
+                        <div onClick={handleButtonClickB}className="max-w-7xl mx-auto ">
+                            <Tools />
                         </div>
                     </div>
                 </Menu.Items>
