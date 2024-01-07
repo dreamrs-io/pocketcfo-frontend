@@ -9,6 +9,7 @@ import excel from '@/public/assets/excel.svg'
 import { HiOutlineLightBulb } from "react-icons/hi";
 import Image from "next/image";
 import Head from "next/head";
+import { generalTools } from "@/data/content";
 
 
 
@@ -91,15 +92,42 @@ export default function ConversionTool({ toolData }) {
     );
 }
 
-export async function getServerSideProps(context) {
-    const { params } = context;
+export async function getStaticPaths() {
+    const paths = [];
+    generalTools.map((i) => {
+        i.tools.map((j) => {
+            paths.push({params:{
+                category:j.url,
+                params:j.page.url
+            }})
+        })
+    })
 
-    console.log(params);
+    return {
+        paths,
+        fallback: false
+    };
+}
 
-    const toolData = await fetchToolData(params.params);
+export async function getStaticProps({params}) {
+
+
+    const toolData = await fetchToolData(params);
     return {
         props: {
             toolData,
         },
     };
 }
+// export async function getServerSideProps(context) {
+//     const { params } = context;
+
+//     console.log(params);
+
+//     const toolData = await fetchToolData(params);
+//     return {
+//         props: {
+//             toolData,
+//         },
+//     };
+// }

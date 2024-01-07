@@ -12,7 +12,7 @@ export default function fetchToolData(url) {
         })
     })
     
-    const matchedTool = tools.find(tool => tool.url === url[0] && tool.page.url=== url[1]  );
+    const matchedTool = tools.find(tool => tool.url === url.category && tool.page.url=== url.params  );
 
     
     if (matchedTool) {
