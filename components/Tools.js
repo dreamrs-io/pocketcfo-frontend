@@ -15,7 +15,7 @@ export default function Tools() {
                         {
                             i.tools.map((t)=>(
                                 <div key={t.id} className="flex-col gap-4">
-                                    <ToolItem href={t.url} title={t.name} color={t.color} bg={t.bg} childHref={t.page.url} />
+                                    <ToolItem href={t.url} title={t.name} color={t.color} bg={t.bg} childHref={t.page.url} icon={t.icon} />
                                 </div>
                             ))
                         }
