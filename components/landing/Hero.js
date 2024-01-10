@@ -7,8 +7,8 @@ export default function Hero() {
         <div className=" px-12 container mx-auto ">
             <div className="flex-col lg:flex-row flex justify-between  items-center h-full">
                 <div className="w-full flex-col flex gap-8">
-                    <h1>Simplify Your Tax Returns with Effortless Document Conversion</h1>
-                    <p className="text-xl">Pocket CFO streamlines tax return and financial statement preparation effortlessly. Our software is designed to save time, ensure accuracy, and provide a user-friendly interface for a seamless experience..</p>
+                    <h1>Upload Docs,Files Business Tax Returns, Make Financial Statements</h1>
+                    <p className="text-xl">With Pocket CFO streamline your tax returns and financial statement preparation effortlessly.</p>
                     <div className="md:flex-row flex-col flex gap-4">
                         <button className="btn bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all duration-150">
                             Start Free Trial
