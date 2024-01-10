@@ -59,7 +59,7 @@ function ToolMenu() {
   
     const handleButtonClickB = () => {
         if (buttonARef.current) {
-            buttonARef.current.click(); // Simulate a click on button A when button B is clicked
+            buttonARef.current.click(); 
         }
     }
     return (

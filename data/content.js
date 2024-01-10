@@ -3,11 +3,6 @@ import { BiMerge, BiPurchaseTag } from "react-icons/bi";
 import { PiFileJpgBold } from "react-icons/pi";
 import { MdBrokenImage, MdPictureAsPdf } from "react-icons/md";
 
-import usersIcon from '@/public/assets/billionUsers.svg'
-import bussiness from '@/public/assets/bussiness.svg'
-import encryption from '@/public/assets/encryption.svg'
-import partners from '@/public/assets/partners.svg'
-import support from '@/public/assets/support.svg'
 
 import { CgMenuGridR } from "react-icons/cg";
 import { FaFileInvoiceDollar, FaMoneyBillAlt } from "react-icons/fa";
@@ -438,56 +433,11 @@ const sectionTools = [
 ]
 
 
-const reasons = [
-
-    {
-        id:1,
-        icon:usersIcon,
-        title:'People Trust Us',
-        subtitle:'Over a billion users have used our service to simplify their work with digital documents.'
-
-    },
-    {
-        id:2,
-        icon:bussiness,
-        title:'Businesses Trust Us',
-        subtitle:'We’re one of the highest-rated PDF software on major B2B software listing platforms: Capterra, G2, and TrustPilot.'
-
-    },
-    {
-        id:3,
-        icon:partners,
-        title:'Our Partners Trust Us',
-        subtitle:'Unlock bonus features with the Smallpdf Chrome Extension, Google Workspace, and Dropbox App—all free to use.'
-
-    },
-    {
-        id:4,
-        icon:support,
-        title:'24/7 Customer Support',
-        subtitle:'Unlock bonus features with the Smallpdf Chrome Extension, Google Workspace, and Dropbox App—all free to use.'
-
-    },
-    {
-        id:5,
-        icon:encryption,
-        title:'256-Bit TLS Encryption',
-        subtitle:'Unlock bonus features with the Smallpdf Chrome Extension, Google Workspace, and Dropbox App—all free to use.'
-
-    },
-    {
-        id:6,
-        icon:usersIcon,
-        title:'Security Standards',
-        subtitle:'Unlock bonus features with the Smallpdf Chrome Extension, Google Workspace, and Dropbox App—all free to use.'
-
-    },
-]
 
 
 
 
 
 export {
-    sectionTools,reasons,generalTools,footerMenus,socialMedia
+    sectionTools,generalTools,footerMenus,socialMedia
 }

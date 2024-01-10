@@ -29,3 +29,18 @@ h3{
 .text-light{
   @apply text-[#757575]
 }
+
+
+
+@keyframes bounce {
+  0%, 100% {
+      transform: translateY(0); /* Start and end point */
+  }
+  50% {
+      transform: translateY(-15px); /* Bounce height */
+  }
+  }
+
+  svg.animate-bounce {
+  animation: bounce 3s ease infinite; /* Adjust duration and timing function as needed */
+  }
