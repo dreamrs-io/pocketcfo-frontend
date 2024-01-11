@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroImg from '@/public/assets/hero.svg'
+import heroImg from '@/public/assets/introduction.svg'
 import { useRef } from "react";
 export default function Home(){
 

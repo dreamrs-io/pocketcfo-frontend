@@ -1,93 +1,85 @@
 import FileInput from "@/components/conversion/FileInput";
 import ConversionLayout from "@/layouts/ConversionLayout";
 import fetchToolData from "@/utils/helper";
-import { AiOutlineLock, AiOutlineSafetyCertificate } from "react-icons/ai";
-import { LiaThumbsUp } from "react-icons/lia";
 import excel from '@/public/assets/excel.svg'
-
-
-import { HiOutlineLightBulb } from "react-icons/hi";
 import Image from "next/image";
 import Head from "next/head";
 import { generalTools } from "@/data/content";
-
+import MediaBlock from "@/components/common/MediaBlock";
+import toolExplain from "@/public/assets/toolExplain.svg";
+import overview from "@/public/assets/overview.svg";
+import logo from "@/public/assets/introduction.svg";
+import whyWe from "@/public/assets/whyWe.svg";
+import fileconvert from "@/public/assets/fileconvert.svg";
+import Benefits from "@/components/landing/Benefits";
+import MediaBlockGrid from "@/components/common/MediaBlockGrid";
 
 
 export default function ConversionTool({ toolData }) {
 
-   
-
     return (
         <ConversionLayout>
             <Head>
-                <title>{toolData.name}</title>
-                <meta name="description" content= 'Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-                <meta property="og:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-                <meta name="twitter:title" content={toolData.name} />
-                <meta property="og:title" content={toolData.name} />
-                <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-                {/* <meta property="og:image" content=''/>
-                <meta property="og:image:width" content="400" />
-                <meta property="og:image:height" content="400" /> */}
-                {/* <meta name="twitter:card" content="summary_large_image" /> */}
-                {/* <meta name="twitter:image" content={ogimgurl} /> */}
+                <title>{toolData.page.seo.title}</title>
+                <meta name="description" content={toolData.page.seo.description} />
+                <meta property="og:description" content={toolData.page.seo.description} />
+                <meta name="twitter:title" content={toolData.page.seo.title} />
+                <meta property="og:title" content={toolData.page.seo.title} />
+                <meta name="twitter:description" content={toolData.page.seo.description} />
             </Head>
-            <FileInput toolData={toolData} />
-            <div className="max-w-6xl mx-auto lg:grid-cols-3 grid sm:grid-cols-2 gap-y-8 my-24  ">
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <HiOutlineLightBulb size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <AiOutlineSafetyCertificate size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <LiaThumbsUp size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <AiOutlineLock size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <HiOutlineLightBulb size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-                <div className="flex-col gap-y-2 justify-center flex items-center text-center px-10">
-                    <HiOutlineLightBulb size={42}/>
-                    <p className="font-bold text-sm">Simple Online Tool To Combine PDFs</p>
-                    <p className="text-xs text-gray-600">Our PDF merger allows you to quickly combine multiple PDF files into one single PDF document, in just a few clicks. No signup is needed to use this online tool.</p>
-                </div>
-
+            <div className="mb-20">
+                <FileInput toolData={toolData} />
             </div>
+            <section>
+                <h2 className="text-center max-w-2xl mx-auto line-clamp-1">{toolData.page.section1.h2}</h2>
+                {
 
-            <div className="border-t  py-20 ">
-                <div className="max-w-3xl mx-auto">
-                    <div className="flex  justify-between">
-                        <div>
-                            <Image src={excel} alt="excel" height={250} width={300}/>
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-bold">How to convert PPT to PDF online:</h4>
-                            <div className="pl-4">
-                                <ol className=" list-decimal gap-2 flex-col flex mt-2 ">
-                                    <li>Drag and drop or click Upload file to import your PPT.</li>
-                                    <li> Wait for Smallpdf to convert the file to PDF format.</li>
-                                    <li> Wait for Smallpdf to convert the file to PDF format.</li>
-                                    <li> Wait for Smallpdf to convert the file to PDF format.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
+                    toolData.page.section1.content.map((i, z) => (
+
+                        <MediaBlock key={z}
+                            title={i.h3}
+                            orientation={z % 2 == 0 && 'left'}
+                            linkEnabled={false}
+                            image={z % 2 == 0 ? toolExplain : overview}
+                            paragraph={i.p} />
+
+                    ))
+                }
+            </section>
+            <section>
+                <h2 className=" text-center max-w-2xl mx-auto line-clamp-1">{toolData.page.section2.h2}</h2>
+                <MediaBlock
+                    title={toolData.page.section2.content[0].h3}
+                    orientation="left"
+                    linkEnabled={false}
+                    image={logo}
+                    paragraph={toolData.page.section2.content[0].p}
+                />
+                <MediaBlock
+                    title={toolData.page.section2.content[1].h3}
+                    orientation="right"
+                    linkEnabled={false}
+                    image={fileconvert}
+                    paragraph={toolData.page.section2.content[1].p} />
+            </section>
+            <section>
+                <MediaBlockGrid
+                    title={toolData.page.benefits.h2}
+                    content={
+                        toolData.page.benefits.content
+                    }
+                />
+            </section>
+            <section className="py-8">
+                <MediaBlock
+                    title={toolData.page.whyChooseUs.h2}
+                    linkHref="/login"
+                    linkText="Convert Now"
+                    paragraph={toolData.page.whyChooseUs.paragraph}
+                    image={whyWe}
+                />
+            </section>
+
         </ConversionLayout>
     );
 }
@@ -96,10 +88,12 @@ export async function getStaticPaths() {
     const paths = [];
     generalTools.map((i) => {
         i.tools.map((j) => {
-            paths.push({params:{
-                category:j.url,
-                params:j.page.url
-            }})
+            paths.push({
+                params: {
+                    category: j.url,
+                    params: j.page.url
+                }
+            })
         })
     })
 
@@ -109,7 +103,7 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
 
 
     const toolData = await fetchToolData(params);

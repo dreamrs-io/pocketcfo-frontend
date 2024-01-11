@@ -4,8 +4,6 @@
 
 
 
-
-
 h1{
   @apply text-6xl font-bold
 }
@@ -68,6 +66,6 @@ h3{
   }
   }
 
-  animate-bounce {
+.animate-bounce {
   animation: bounce 3s ease infinite; /* Adjust duration and timing function as needed */
   }
