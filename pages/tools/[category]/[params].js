@@ -9,7 +9,7 @@ import MediaBlock from "@/components/common/MediaBlock";
 import toolExplain from "@/public/assets/toolExplain.svg";
 import overview from "@/public/assets/overview.svg";
 import logo from "@/public/assets/introduction.svg";
-import whyWe from "@/public/assets/whyWe.svg";
+import whyWe from "@/public/assets/whywe.svg";
 import fileconvert from "@/public/assets/fileconvert.svg";
 import Benefits from "@/components/landing/Benefits";
 import MediaBlockGrid from "@/components/common/MediaBlockGrid";
