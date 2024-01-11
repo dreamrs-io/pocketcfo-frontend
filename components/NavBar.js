@@ -5,6 +5,7 @@ import {CgMenuGridR} from "react-icons/cg"
 import {HiMenu} from "react-icons/hi"
 import Tools from "./Tools"
 import Link from "next/link"
+import logoSVG from "@/public/assets/logo.svg"
 
 export default function NavBar() {
     return (
@@ -30,7 +31,7 @@ export default function NavBar() {
                         <li className="link">Teams</li>
                     </ul>
                     <ul className="hidden md:flex items-center gap-4 border-l pl-4">
-                        <li className="link ">Login</li>
+                        <Link href={'/login'} className="link">Login</Link>
                         <li className=" bg-blue-600 text-white px-4 py-2 font-semibold rounded-sm cursor-pointer text-sm whitespace-nowrap">Free Trial</li>
                     </ul>
                     <button className="md:hidden">
@@ -45,7 +46,7 @@ export default function NavBar() {
 function Logo() {
     return (
         <div className="flex gap-2 ">
-            <Image className="" alt="logo" src={'https://s.smallpdf.com/static/2ae88642617fc2c0b873.svg'} width={30} height={20} />
+            <Image className="" alt="logo" src={logoSVG} width={30} height={20} />
             <p className="text-2xl font-extrabold">PocketCFO</p>
         </div>
     )

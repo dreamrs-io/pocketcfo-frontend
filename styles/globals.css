@@ -26,6 +26,33 @@ h3{
   @apply rounded-sm px-4 py-2 hover:brightness-110 transition-all duration-150 
 }
 
+
+
+.btn-inverted {
+  @apply p-2   font-bold  focus:ring-2 focus:ring-blue-600/50 border border-blue-600 
+  flex justify-center items-center gap-2 rounded-sm
+}
+
+.btn-login {
+  @apply p-2 bg-blue-600  text-white font-bold focus:ring-2 focus:ring-blue-600/50 border border-blue-600 
+  flex justify-center items-center gap-2 rounded-sm
+}
+
+.input-box{ @apply border border-gray-300 block rounded-sm w-full p-2.5 outline-none
+ placeholder:text-gray-300 focus:border-blue-600 
+  
+ transition-all duration-300
+}
+
+
+
+
+.input-wrapper{
+
+  @apply  block mb-2  text-sm font-medium 
+
+}
+
 .text-light{
   @apply text-[#757575]
 }
@@ -41,6 +68,6 @@ h3{
   }
   }
 
-  svg.animate-bounce {
+  animate-bounce {
   animation: bounce 3s ease infinite; /* Adjust duration and timing function as needed */
   }
