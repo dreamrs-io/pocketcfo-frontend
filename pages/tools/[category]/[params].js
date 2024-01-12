@@ -10,9 +10,10 @@ import toolExplain from "@/public/assets/toolExplain.svg";
 import overview from "@/public/assets/overview.svg";
 import logo from "@/public/assets/introduction.svg";
 import whyWe from "@/public/assets/whywe.svg";
+import signup from "@/public/assets/signup.svg";
 import fileconvert from "@/public/assets/fileconvert.svg";
-import Benefits from "@/components/landing/Benefits";
 import MediaBlockGrid from "@/components/common/MediaBlockGrid";
+import MediaBlockList from "@/components/common/MediaBlockList";
 
 
 export default function ConversionTool({ toolData }) {
@@ -46,7 +47,7 @@ export default function ConversionTool({ toolData }) {
                     ))
                 }
             </section>
-            <section>
+            <section className="">
                 <h2 className=" text-center max-w-2xl mx-auto line-clamp-1">{toolData.page.section2.h2}</h2>
                 <MediaBlock
                     title={toolData.page.section2.content[0].h3}
@@ -62,7 +63,7 @@ export default function ConversionTool({ toolData }) {
                     image={fileconvert}
                     paragraph={toolData.page.section2.content[1].p} />
             </section>
-            <section>
+            <section className="">
                 <MediaBlockGrid
                     title={toolData.page.benefits.h2}
                     content={
@@ -70,15 +71,34 @@ export default function ConversionTool({ toolData }) {
                     }
                 />
             </section>
-            <section className="py-8">
-                <MediaBlock
-                    title={toolData.page.whyChooseUs.h2}
-                    linkHref="/login"
-                    linkText="Convert Now"
-                    paragraph={toolData.page.whyChooseUs.paragraph}
-                    image={whyWe}
-                />
-            </section>
+            {
+                toolData.page.whyWe &&
+
+                <section className="">
+                    <h2 className="text-center mx-auto">{toolData.page.whyWe.h2}</h2>
+                    <MediaBlock
+                        title={toolData.page.whyWe.h3}
+                        linkHref="/login"
+                        linkText="Convert Now"
+                        paragraph={toolData.page.whyWe.p}
+                        image={whyWe}
+                    />
+                </section>
+            }
+            <MediaBlockList/>
+            {
+                toolData.page.try &&
+                <section className="py-8">
+                    <MediaBlock
+                        title={toolData.page.try.h3}
+                        orientation="left"
+                        linkHref="/login"
+                        linkText="Convert Now"
+                        paragraph={toolData.page.try.p}
+                        image={signup}
+                    />
+                </section>
+            }
 
         </ConversionLayout>
     );
