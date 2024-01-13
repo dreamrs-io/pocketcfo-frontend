@@ -44,7 +44,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -123,7 +123,7 @@ const generalTools = [
                 },
             },
             {
-                id: 1,
+                id: 2,
                 name: 'Balance Sheet',
                 icon: <MdBrokenImage />,
                 color: 'text-blue-600',
@@ -147,7 +147,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -227,7 +227,7 @@ const generalTools = [
                 },
             },
             {
-                id: 1,
+                id: 3,
                 name: 'Cash Flow Statement',
                 icon: <FaMoneyBillTransfer />,
                 color: 'text-green-600',
@@ -251,7 +251,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -330,7 +330,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:4,
                 name:'Balance Statements',
                 icon:<MdAccountBalance />,
                 color:'text-yellow-600',
@@ -354,7 +354,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -433,7 +433,7 @@ const generalTools = [
                 },
             },
             {
-                id: 1,
+                id: 5,
                 name: 'Receipts',
                 icon: <HiOutlineReceiptTax />,
                 color: 'text-indigo-600',
@@ -457,7 +457,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -536,7 +536,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:6,
                 name:'Invoicing and Billing',
                 icon:<FaFileInvoiceDollar/>,
                 color:'text-cyan-600',
@@ -560,7 +560,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -639,7 +639,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:7,
                 name:'Purchase Orders',
                 icon:<BiSolidPurchaseTag />,
                 color:'text-teal-600',
@@ -663,7 +663,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -741,7 +741,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:8,
                 name:'Payroll Records',
                 icon:<TbReportMoney/>,
                 color:'text-orange-600',
@@ -765,7 +765,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -846,7 +846,7 @@ const generalTools = [
         ]
     },
     {
-        id:1,
+        id:2,
         title:'Convert to Financial Statements',
         tools:[
             { 
@@ -874,7 +874,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -953,7 +953,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:2,
                 name:'Balance Statements',
                 icon:<MdBrokenImage/>,
                 color:'text-blue-600',
@@ -977,7 +977,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -1056,7 +1056,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:3,
                 name:'Receipts',
                 icon:<HiOutlineReceiptTax/>,
                 color:'text-green-600',
@@ -1080,7 +1080,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -1159,7 +1159,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:4,
                 name:'Invoicing and Billing',
                 icon:<FaFileInvoiceDollar />,
                 color:'text-yellow-600',
@@ -1183,7 +1183,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -1262,7 +1262,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:5,
                 name:'Purchase Orders',
                 icon:<BiPurchaseTag />,
                 color:'text-indigo-600',
@@ -1286,7 +1286,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },
@@ -1365,7 +1365,7 @@ const generalTools = [
                 },
             },
             { 
-                id:1,
+                id:6,
                 name:'Payroll Records',
                 icon:<TbReportMoney />,
                 color:'text-cyan-600',
@@ -1389,7 +1389,7 @@ const generalTools = [
                     section1: {
                         h2: "Understanding Income Statements and Tax Returns",
                         content: [
-                            { h3: "Explanation of Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
+                            { h3: "What is Income Statements:", p: "An income statement, also known as a profit and loss statement, delineates a company's revenues, expenses, and profits over a specific period. It comprises various components like revenue, cost of goods sold, gross profit, operating expenses, net income, and more. Accurate income statements are imperative for tax filing, providing a comprehensive view of a company's financial performance." },
                             { h3: "Tax Returns Overview:", p: "Tax returns summarize an individual or business entity's financial activities throughout the year. They showcase income, deductions, credits, and ultimately calculate the amount of tax owed to the government or potential refunds. Aligning income statements with tax returns is crucial to ensure accuracy in tax reporting and compliance with regulations." },
                         ]
                     },

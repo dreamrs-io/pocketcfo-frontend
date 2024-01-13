@@ -7,20 +7,37 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import { Inter } from 'next/font/google';
 import logoSVG from "@/public/assets/logo.svg"
+import apiService from "@/api/ExternalApi";
+import { useRouter } from "next/router";
+import { parse } from "cookie-js";
+import { toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Register() {
 
-
+    const router = useRouter();
     const formik = useFormik({
 
-        initialValues: { username: '', email: '', password: '', cpassword: '' },
+        initialValues: { username: '', email: '', password: '', password_confirmation: '' },
         onSubmit,
         validate: register_validate
     })
     async function onSubmit(values) {
-        register(values).then(() => { formik.resetForm(); router.push('/') })
+        const res = await apiService.sigup(values);
+        if (res.status==true){
+            const u = {
+                accessToken:res.data.accessToken,
+                username:res.data.user.name,
+                email:res.data.user.email,
+            } 
+            Cookies.set('laravel_token',JSON.stringify(u),{ expires: 7 })
+            toast.success('Loggin In')
+            router.push('/');
+        }else{
+            toast.error(res.message);
+        }
 
     }
     return (
@@ -52,9 +69,9 @@ export default function Register() {
                         </div>
                         <div className="my-4">
                             <label className="input-wrapper">Confirm Password</label>
-                            <input className={`input-box  ${formik.errors.cpassword && formik.touched.cpassword ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                                type='password' id='cpassword' placeholder="••••••••" {...formik.getFieldProps('cpassword')} />
-                            {formik.errors.cpassword && formik.touched.cpassword ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.cpassword}</div> : <></>}
+                            <input className={`input-box  ${formik.errors.password_confirmation && formik.touched.password_confirmation ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
+                                type='password' id='password_confirmation' placeholder="••••••••" {...formik.getFieldProps('password_confirmation')} />
+                            {formik.errors.password_confirmation && formik.touched.password_confirmation ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password_confirmation}</div> : <></>}
                         </div>
                         <button type="submit" className="btn-login w-full disabled:bg-gray-300 disabled:border-transparent" disabled={!(formik.isValid && formik.dirty)} >Register</button>
                         <div className="flex flex-col gap-2 mt-4">
@@ -118,13 +135,34 @@ function register_validate(values) {
     }
 
     // validate confirm password
-    if (!values.cpassword) {
-        errors.cpassword = "Required";
-    } else if (values.password !== values.cpassword) {
-        errors.cpassword = "Password Not Match...!"
-    } else if (values.cpassword.includes(" ")) {
-        errors.cpassword = "Invalid Confirm Password"
+    if (!values.password_confirmation) {
+        errors.password_confirmation = "Required";
+    } else if (values.password !== values.password_confirmation) {
+        errors.password_confirmation = "Password Not Match...!"
+    } else if (values.password_confirmation.includes(" ")) {
+        errors.password_confirmation = "Invalid Confirm Password"
     }
 
     return errors;
+}
+
+
+export async function getServerSideProps(context) {
+    const cookies = parse(context.req.headers.cookie || '');
+    if (cookies.laravel_token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }else{
+        
+        return {
+            props: {
+               
+            },
+        };
+    }
+    
 }

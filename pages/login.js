@@ -7,10 +7,18 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import { Inter } from 'next/font/google';
 import logoSVG from "@/public/assets/logo.svg"
-
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import apiService from "@/api/ExternalApi";
+import Cookies from "js-cookie";
+import nextApi from "@/api/InternalApi";
+import { parse } from "cookie-js";
+import { redirect } from "next/navigation";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
+
+    const router = useRouter();
 
 
     const formik = useFormik({
@@ -22,19 +30,25 @@ export default function Login() {
         onSubmit
     })
     async function onSubmit(values) {
-        const status = await signIn('credentials', {
-            redirect: false,
-            email: values.email,
-            password: values.password,
-            callbackUrl: '/'
-        })
-        if (status.ok) { router.push(status.url) }
-        if (status.error) { serverErrorHandler(401, status.error); console.log(status) }
+        const res = await apiService.sigin(values);
+        if (res.status==true){
+            const u = {
+                accessToken:res.data.accessToken,
+                username:res.data.user.name,
+                email:res.data.user.email,
+            } 
+            Cookies.set('laravel_token',JSON.stringify(u),{ expires: 7 })
+            toast.success('Loggin In')
+            router.push('/');
+        }else{
+            toast.error(res.message);
+        }
+
     }
+
     return (
         <div className={`relative h-screen bg-blue-600 flex flex-col justify-center ${inter.className}`}>
             <div className="flex justify-between h-full items-center ">
-
                 <div className="bg-white h-full w-full     border flex flex-col justify-center items-center right-skew ">
                     <form onSubmit={formik.handleSubmit} className="w-2/4   ">
                         <Logo />
@@ -92,6 +106,34 @@ function Logo() {
 
 
 
+export async function getServerSideProps(context) {
+    const cookies = parse(context.req.headers.cookie || '');
+    if (cookies.laravel_token) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }else{
+        
+        return {
+            props: {
+               
+            },
+        };
+    }
+    
+}
+
+
+
+
+
+
+
+
+
 function login_validate(values) {
 
     const errors = {};
@@ -111,3 +153,4 @@ function login_validate(values) {
     }
     return errors;
 }
+
