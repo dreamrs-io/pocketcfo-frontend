@@ -72,20 +72,20 @@ export default function ConversionTool({ toolData }) {
                 />
             </section>
             {
-                toolData.page.whyWe &&
+                toolData.page.whyChooseUs &&
 
                 <section className="">
-                    <h2 className="text-center mx-auto">{toolData.page.whyWe.h2}</h2>
+                    <h2 className="text-center mx-auto">{toolData.page.whyChooseUs.h2}</h2>
                     <MediaBlock
-                        title={toolData.page.whyWe.h3}
+                        title={toolData.page.whyChooseUs.h3}
                         linkHref="/login"
                         linkText="Convert Now"
-                        paragraph={toolData.page.whyWe.p}
+                        paragraph={toolData.page.whyChooseUs.p}
                         image={whyWe}
                     />
                 </section>
             }
-            <MediaBlockList/>
+            {/* <MediaBlockList/> */}
             {
                 toolData.page.try &&
                 <section className="py-8">
