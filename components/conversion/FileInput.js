@@ -17,7 +17,7 @@ export default function FileInput({toolData}) {
     };
     return (
         <div className="container mx-auto">
-            <h2 className="text-center my-10">{toolData.page.title}</h2>
+            <h1 className=" text-5xl text-center my-10 max-w-2xl mx-auto line-clamp-2">{toolData.page.header.title}</h1>
             <div className={`${toolData.page.bg} rounded-md text-center p-20 max-w-6xl mx-auto relative `}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}

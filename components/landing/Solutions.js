@@ -7,30 +7,37 @@ export default function Solutions() {
 
         [
             {
+                "id":"1",
                 "title": "Receipts to Tax Returns",
                 "description": "Effortlessly convert receipts into meticulous tax filings, ensuring compliance and precise financial reporting."
             },
             {
+                "id":"2",
                 "title": "Invoicing & Billing Conversion",
                 "description": "Streamline tax reporting by converting invoicing and billing data into accurate tax returns effortlessly."
             },
             {
+                "id":"3",
                 "title": "Payroll Records to Tax Returns",
                 "description": "Simplify tax obligations by converting payroll records into precise tax filings with unparalleled accuracy."
             },
             {
+                "id":"4",
                 "title": "Cash Flow Statement Converter",
                 "description": "Translate cash flow statements into accurate tax returns, enabling clear financial representation."
             },
             {
+                "id":"5",
                 "title": "Income Statement Conversion",
                 "description": "Seamlessly convert income statements into precise tax filings for compliance and informed financial decisions."
             },
             {
+                "id":"6",
                 "title": "Balance Sheet Translation",
                 "description": "Translate balance sheets into meticulous tax returns, offering clarity and compliance."
             },
             {
+                "id":"7",
                 "title": "Advanced AI Technology",
                 "description": "Harness the power of AI trained especially on GAAP and US Laws for precise, error-free translations and reporting."
             }
