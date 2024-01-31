@@ -10,7 +10,7 @@ export default function Pricing(){
     return (
         <ConversionLayout>
             <Head>
-                <title>Pricing</title>
+                <title>PocketCFO | Pricing</title>
                 <meta name="description" content= 'Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
                 <meta property="og:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
                 <meta name="twitter:title" content='pricing' />
@@ -21,6 +21,10 @@ export default function Pricing(){
                 <meta property="og:image:height" content="400" /> */}
                 {/* <meta name="twitter:card" content="summary_large_image" /> */}
                 {/* <meta name="twitter:image" content={ogimgurl} /> */}
+            
+           
+                <link rel="canonical" href='https://www.pocketcfos.com/pricing' />
+            
             </Head>
             <div className="mx-auto max-w-6xl my-12">
                 <h2 className="text-center mb-4">Pocket CFO&apos;s That Fits Your Budget </h2>

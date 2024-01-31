@@ -37,6 +37,7 @@ export default function Home(props) {
                 <meta name="twitter:title" content='PocketCfo&apos;s' />
                 <meta property="og:title" content='PocketCfo&apos;s' />
                 <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <link rel="canonical" href='https://www.pocketcfos.com' />
             </Head>
             <Hero />
             

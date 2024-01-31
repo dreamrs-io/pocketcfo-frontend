@@ -16,7 +16,7 @@ import MediaBlockGrid from "@/components/common/MediaBlockGrid";
 import MediaBlockList from "@/components/common/MediaBlockList";
 
 
-export default function ConversionTool({ toolData }) {
+export default function ConversionTool({ toolData,canonicalUrl }) {
 
     return (
         <ConversionLayout>
@@ -27,6 +27,7 @@ export default function ConversionTool({ toolData }) {
                 <meta name="twitter:title" content={toolData.page.seo.title} />
                 <meta property="og:title" content={toolData.page.seo.title} />
                 <meta name="twitter:description" content={toolData.page.seo.description} />
+                <link rel="canonical" href={canonicalUrl} />
             </Head>
             <div className="mb-20">
                 <FileInput toolData={toolData} />
@@ -124,12 +125,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-
-
     const toolData = await fetchToolData(params);
+    const canonicalUrl = 'https://www.pocketcfos.com/tools/'+params.category+'/'+params.params
     return {
         props: {
-            toolData,
+            toolData,canonicalUrl
         },
     };
 }
