@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import nextApi from "@/api/InternalApi";
 import { parse } from "cookie-js";
 import { redirect } from "next/navigation";
+import Head from "next/head";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
@@ -31,65 +32,71 @@ export default function Login() {
     })
     async function onSubmit(values) {
         const res = await apiService.sigin(values);
-        if (res.status==true){
+        if (res.status == true) {
             const u = {
-                accessToken:res.data.accessToken,
-                username:res.data.user.name,
-                email:res.data.user.email,
-            } 
-            Cookies.set('laravel_token',JSON.stringify(u),{ expires: 7 })
+                accessToken: res.data.accessToken,
+                username: res.data.user.name,
+                email: res.data.user.email,
+            }
+            Cookies.set('laravel_token', JSON.stringify(u), { expires: 7 })
             toast.success('Loggin In')
             router.push('/');
-        }else{
+        } else {
             toast.error(res.message);
         }
 
     }
 
     return (
-        <div className={`relative h-screen bg-blue-600 flex flex-col justify-center ${inter.className}`}>
-            <div className="flex justify-between h-full items-center ">
-                <div className="bg-white h-full w-full     border flex flex-col justify-center items-center right-skew ">
-                    <form onSubmit={formik.handleSubmit} className="w-2/4   ">
-                        <Logo />
-                        <h2 className="text-xl font-bold text-left my-6 ">Login to start </h2>
-                        <div className="my-4">
-                            <label className="input-wrapper">Email</label>
-                            <input className={`input-box  ${formik.errors.email && formik.touched.email ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                                type='text' id='email' placeholder="jhon Dhoe" {...formik.getFieldProps('email')} />
-                            {formik.errors.email && formik.touched.email ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.email}</div> : <></>}
-                        </div>
-                        <div className="my-4">
-                            <label className="input-wrapper">Password</label>
-                            <input className={`input-box  ${formik.errors.password && formik.touched.password ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                                type='password' id='password' placeholder="••••••••" {...formik.getFieldProps('password')} />
-                            {formik.errors.password && formik.touched.password ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password}</div> : <></>}
-                        </div>
+        <>
+            <Head>
+                <title>PocketCFO | Login</title>
+                <link rel="canonical" href='https://www.pocketcfos.com/login' />
+            </Head>
+            <div className={`relative h-screen bg-blue-600 flex flex-col justify-center ${inter.className}`}>
+                <div className="flex justify-between h-full items-center ">
+                    <div className="bg-white h-full w-full     border flex flex-col justify-center items-center right-skew ">
+                        <form onSubmit={formik.handleSubmit} className="w-2/4   ">
+                            <Logo />
+                            <h2 className="text-xl font-bold text-left my-6 ">Login to start </h2>
+                            <div className="my-4">
+                                <label className="input-wrapper">Email</label>
+                                <input className={`input-box  ${formik.errors.email && formik.touched.email ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
+                                    type='text' id='email' placeholder="jhon Dhoe" {...formik.getFieldProps('email')} />
+                                {formik.errors.email && formik.touched.email ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.email}</div> : <></>}
+                            </div>
+                            <div className="my-4">
+                                <label className="input-wrapper">Password</label>
+                                <input className={`input-box  ${formik.errors.password && formik.touched.password ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
+                                    type='password' id='password' placeholder="••••••••" {...formik.getFieldProps('password')} />
+                                {formik.errors.password && formik.touched.password ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password}</div> : <></>}
+                            </div>
 
-                        <div className="flex  justify-end" >
-                            <Link href={'/recover'} className={`mt-1  hover:underline`}  >
-                                Forgot Password
-                            </Link>
-                        </div>
-                        <div className="flex flex-col gap-2 mt-4">
-                            <Button type='submit' label="Login" width="w-full" />
-                            <Button type='button' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
-                        </div>
-                        <div className="flex  justify-center mt-4 items-center gap-2" >
-                            <p className="text-gray-400 text-sm">{"Don't have an account yet"}</p>
-                            <Link href={'/register'} className={` hover:underline`}  >
-                                Signup Here
-                            </Link>
-                        </div>
-                    </form>
+                            <div className="flex  justify-end" >
+                                <Link href={'/recover'} className={`mt-1  hover:underline`}  >
+                                    Forgot Password
+                                </Link>
+                            </div>
+                            <div className="flex flex-col gap-2 mt-4">
+                                <Button type='submit' label="Login" width="w-full" />
+                                <Button type='button' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
+                            </div>
+                            <div className="flex  justify-center mt-4 items-center gap-2" >
+                                <p className="text-gray-400 text-sm">{"Don't have an account yet"}</p>
+                                <Link href={'/register'} className={` hover:underline`}  >
+                                    Signup Here
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div className="w-full hidden md:block animate-bounce">
+                        <Image src={loginSvg} width={900} alt="login" />
+                    </div>
+
                 </div>
-
-                <div className="w-full hidden md:block animate-bounce">
-                    <Image src={loginSvg} width={900} alt="login" />
-                </div>
-
             </div>
-        </div>
+        </>
     );
 }
 
@@ -115,15 +122,15 @@ export async function getServerSideProps(context) {
                 permanent: false,
             },
         }
-    }else{
-        
+    } else {
+
         return {
             props: {
-               
+
             },
         };
     }
-    
+
 }
 
 
