@@ -10,9 +10,6 @@ export default function Home(){
         const mouseY = event.clientY;
         console.log('Mouse X:', mouseX, 'Mouse Y:', mouseY);
         
-        
-    
-
     }
     return(
         <div className="border border-black w-[500px] h-[500px] " onClick={handleMouseClick}>

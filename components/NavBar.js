@@ -64,8 +64,8 @@ export default function NavBar() {
 
 function Logo() {
     return (
-        <Link href={'/'} className="flex gap-2 ">
-            <Image className="" alt="logo" src={logoSVG} width={30} height={20} />
+        <Link href={'/'} className="flex gap-2 items-center">
+            <Image className="" alt="logo" src={logoSVG} width={50} height={20} />
             <p className="text-2xl font-extrabold">PocketCFO</p>
         </Link>
     )

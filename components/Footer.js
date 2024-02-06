@@ -43,8 +43,8 @@ export default function Footer() {
 
 function Logo() {
     return (
-        <div className="flex gap-2">
-            <Image className="" alt="logo" src={logo} width={30} height={20} />
+        <div className="flex gap-2 items-center">
+            <Image className="" alt="logo" src={logo} width={50} height={20} />
             <p className="text-2xl font-extrabold">PocketCFO</p>
         </div>
     )
