@@ -14,9 +14,11 @@ import signup from "@/public/assets/signup.svg";
 import fileconvert from "@/public/assets/fileconvert.svg";
 import MediaBlockGrid from "@/components/common/MediaBlockGrid";
 import MediaBlockList from "@/components/common/MediaBlockList";
+import { useRouter } from "next/router";
 
 
 export default function ConversionTool({ toolData,canonicalUrl }) {
+
 
     return (
         <ConversionLayout>
@@ -30,7 +32,7 @@ export default function ConversionTool({ toolData,canonicalUrl }) {
                 <link rel="canonical" href={canonicalUrl} />
             </Head>
             <div className="mb-20">
-                <FileInput toolData={toolData} />
+                <FileInput toolData={toolData}  />
             </div>
             <section>
                 <h2 className="text-center max-w-2xl mx-auto line-clamp-1">{toolData.page.section1.h2}</h2>
