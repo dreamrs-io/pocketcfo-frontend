@@ -4,7 +4,7 @@ import Router from 'next/router';
 const axiosClient = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_LARAVEL_API}/`,
     headers: {
-        'Accept': 'application/json',
+        // 'Accept': 'application/json',
         'Content-Type': 'application/json',
     }
 });
@@ -38,10 +38,11 @@ const apiService = {
         const formData = new FormData();
         formData.append('file', file);
         try {
-            const response = await axiosClient.post('/upload/', formData, {
+            const response = await axiosClient.post('/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
+                baseURL:'https://s.pocketcfos.com',
                 onUploadProgress: progressEvent => {
                     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
                     onProgress(percentCompleted);
