@@ -1,8 +1,5 @@
 import FileInput from "@/components/conversion/FileInput";
 import ConversionLayout from "@/layouts/ConversionLayout";
-import fetchToolData from "@/utils/helper";
-import excel from '@/public/assets/excel.svg'
-import Image from "next/image";
 import Head from "next/head";
 import { generalTools } from "@/data/content";
 import MediaBlock from "@/components/common/MediaBlock";
@@ -15,6 +12,7 @@ import fileconvert from "@/public/assets/fileconvert.svg";
 import MediaBlockGrid from "@/components/common/MediaBlockGrid";
 import MediaBlockList from "@/components/common/MediaBlockList";
 import { useRouter } from "next/router";
+import { fetchToolData } from "@/utils/helper";
 
 
 export default function ConversionTool({ toolData,canonicalUrl }) {
@@ -127,7 +125,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+
+    console.log(params)
     const toolData = await fetchToolData(params);
+    console.log(toolData)
     const canonicalUrl = 'https://www.pocketcfos.com/tools/'+params.category+'/'+params.params
     return {
         props: {

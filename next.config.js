@@ -3,7 +3,7 @@ const nextConfig = {
     reactStrictMode: true,
     output: 'standalone',
     images:{
-        domains:['secure.gravatar.com']
+        domains:['secure.gravatar.com','api.cforesource.org']
     }
 }
 
