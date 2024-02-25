@@ -1,8 +1,5 @@
 import FileInput from "@/components/conversion/FileInput";
 import ConversionLayout from "@/layouts/ConversionLayout";
-import fetchToolData from "@/utils/helper";
-import excel from '@/public/assets/excel.svg'
-import Image from "next/image";
 import Head from "next/head";
 import { generalTools } from "@/data/content";
 import MediaBlock from "@/components/common/MediaBlock";
@@ -14,9 +11,12 @@ import signup from "@/public/assets/signup.svg";
 import fileconvert from "@/public/assets/fileconvert.svg";
 import MediaBlockGrid from "@/components/common/MediaBlockGrid";
 import MediaBlockList from "@/components/common/MediaBlockList";
+import { useRouter } from "next/router";
+import { fetchToolData } from "@/utils/helper";
 
 
 export default function ConversionTool({ toolData,canonicalUrl }) {
+
 
     return (
         <ConversionLayout>
@@ -30,7 +30,7 @@ export default function ConversionTool({ toolData,canonicalUrl }) {
                 <link rel="canonical" href={canonicalUrl} />
             </Head>
             <div className="mb-20">
-                <FileInput toolData={toolData} />
+                <FileInput toolData={toolData}  />
             </div>
             <section>
                 <h2 className="text-center max-w-2xl mx-auto line-clamp-1">{toolData.page.section1.h2}</h2>
@@ -125,7 +125,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+
+    console.log(params)
     const toolData = await fetchToolData(params);
+    console.log(toolData)
     const canonicalUrl = 'https://www.pocketcfos.com/tools/'+params.category+'/'+params.params
     return {
         props: {

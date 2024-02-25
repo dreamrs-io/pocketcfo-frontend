@@ -2,13 +2,11 @@ import Image from "next/image"
 import logo from "@/public/assets/logo.svg"
 import Link from "next/link"
 import { footerMenus, socialMedia } from "@/data/content"
-
 import { BsFacebook, BsTwitter, BsYoutube } from "react-icons/bs"
 import { FaInstagram, FaLinkedin } from "react-icons/fa"
 import { AiFillHeart } from "react-icons/ai"
 
 export default function Footer() {
-
     return (
         <footer className="border-t mt-10">
             <div className="container mx-auto">

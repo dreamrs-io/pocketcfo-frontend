@@ -1,6 +1,6 @@
 import { generalTools } from "@/data/content";
 
-export default function fetchToolData(url) {
+async function fetchToolData(url) {
     let tools = []
 
     generalTools.map((i) => {
@@ -25,4 +25,36 @@ export default function fetchToolData(url) {
             error: 'Tool not found',
         }
     }
+}
+async function  fetchCategory(url) {
+    let tools = []
+
+    generalTools.map((i) => {
+    
+        tools.push(i)
+    })
+    
+    const matchedTool = tools.find(t=>t.category==url.category);
+
+    console.log(matchedTool)
+
+
+    if (matchedTool) {
+
+        return matchedTool;
+
+    } else {
+
+        return {
+            error: 'Tool not found',
+        }
+    }
+}
+
+
+export {
+
+    fetchCategory,fetchToolData
+
+
 }

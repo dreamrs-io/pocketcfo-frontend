@@ -13,6 +13,9 @@ h2{
 h3{
   @apply text-3xl font-bold
 }
+h4{
+  @apply text-2xl font-bold
+}
 
 
 .link{
@@ -68,4 +71,16 @@ h3{
 
 .animate-bounce {
   animation: bounce 3s ease infinite; /* Adjust duration and timing function as needed */
+  }
+
+
+
+  .card:hover{
+
+    transform: translateY(-3px);
+    box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+}
+.card {
+    border-radius: 4px;
+    border: 1px solid #ece3e3;
   }

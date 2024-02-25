@@ -1,44 +1,127 @@
-import { BiSolidFileExport } from "react-icons/bi"
+import apiService from "@/api/ExternalApi";
+import { useEffect, useState } from "react";
 import { FaRegFilePdf } from "react-icons/fa"
 
 
+export default function FileInput({ toolData }) {
+    let files = [];
+    let hasFile = false;
+    const [filesState, setFiles] = useState(files);
+    const [hasFileState, setHasFile] = useState(hasFile);
+    const [results, setResults] = useState(null);
+    const [processing,setProcessing] = useState(false);
 
-export default function FileInput({toolData}) {
-
+    const [uploadProgress, setUploadProgress] = useState(30);
 
     const handleDrop = (e) => {
         e.preventDefault();
-        const files = e.dataTransfer.files;
-        console.log(files);
+        setUploadProgress(0);
+        updateFiles(e.dataTransfer.files);
     };
 
     const handleDragOver = (e) => {
         e.preventDefault();
     };
+
+    useEffect(() => {
+        setFiles([]);
+        setHasFile(false)
+        setUploadProgress(0);
+    }, [toolData]);
+
+    const onFileChange = (e) => {
+        setFiles([]);
+        setHasFile(false)
+        updateFiles(e.target.files);
+    };
+
+    const updateFiles = (newFiles) => {
+        setFiles(files = newFiles);
+        setHasFile(hasFile = newFiles.length > 0);
+        console.log('hasFile', hasFile, files);
+        uploadFile();
+    }
+
+    const uploadFile = async () => {
+        if (files.length === 0) {
+            return;
+        }
+        setUploadProgress(0);
+        setProcessing(true);
+        setResults(null);
+        const r = await apiService.convertFile(files[0], (progress) => {
+            setUploadProgress(progress)
+        })
+        setProcessing(false);
+        setResults(r)
+    }
     return (
         <div className="container mx-auto">
             <h1 className=" text-5xl text-center my-10 max-w-2xl mx-auto line-clamp-2">{toolData.page.header.title}</h1>
             <div className={`${toolData.page.bg} rounded-md text-center p-20 max-w-6xl mx-auto relative `}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
-                onClick={() => { document.getElementById('fileInput').click() }}
+            // onClick={() => { document.getElementById('fileInput').click() }}
             >
+
                 <div className="flex justify-center mb-4">
                     <FaRegFilePdf className="text-center text-white" size={32} />
-
                 </div>
-                <input type="file" className="hidden" id="fileInput" />
+                <div className="mb-2 text-white">
+                    {/* {file && file.name} */}
+                </div>
+                {/* <input onChange={handleChange} type="file" className="hidden" id="fileInput" /> */}
+                <input type="file" className="hidden" id="fileInput" accept=".jpg, .jpeg, .png, .doc, .pdf" onChange={onFileChange} />
                 <button
                     className="bg-white p-2 px-6 rounded-md font-light "
                     onClick={() => { document.getElementById('fileInput').click() }}
                 >
                     <div className="flex items-center gap-2">
-                        <BiSolidFileExport size={24} /> <span>Choose File</span>
+                        <span>Choose File</span>
                     </div>
                 </button>
                 <label className="block font-semibold my-2 text-white">or drop File here</label>
+                <label className="block font-semibold my-2 text-white">{
+                    (hasFileState) && filesState[0].name
+                }</label>
                 <div className="inset-2 border-2 border-white border-dashed rounded-md absolute pointer-events-none"></div>
+                <div className="text-white mt-4">
+                    {
+                        results && results.status &&
+                        <>
+                            <p className="block font-semibold my-2 text-white">
+                                File Type: {results.data.file_type}
+                            </p>
+                            <ul>
+                                {results.data.results.map((item, index) => <li key={index}>{item}</li>)}
+                            </ul>
+                        </>
+                    }
+                    {
+                        processing &&
+                        
+                        <div role="status" className="flex justify-center my-4">
+                            <svg aria-hidden="true" className={`w-10 h-10  animate-spin text-gray-300  fill-white`} viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor" />
+                                <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill" />
+                            </svg>
+                        </div>
+                    }
+                    {
+                        (results) && !results.status &&
+                        <p>{results.message}</p>
+                    }
+                </div>
             </div>
+            {
+                uploadProgress == 0 ||
+                <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700 max-w-6xl mx-auto mt-2">
+                    <div className={`${toolData.page.bg} text-xs font-bold text-blue-100 text-center p-1 leading-none rounded-full `} style={{ width: uploadProgress + '%' }}>
+                        {uploadProgress}
+                    </div>
+                </div>
+            }
+
         </div>
     )
 

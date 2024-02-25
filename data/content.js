@@ -18,6 +18,7 @@ const generalTools = [
     {
         id: 1,
         title: 'Convert To Tax Returns',
+        category:'tax-returns',
         tools: [
             {
                 id: 1,
@@ -25,7 +26,7 @@ const generalTools = [
                 icon: <FaMoneyBillAlt />,
                 color: 'text-red-600',
                 bg: 'hover:bg-red-600',
-                url: 'tax-return',
+                url: 'tax-returns',
                 page: {
                     title: 'Income Statement',
                     subtitle: 'We Do Tax returns',
@@ -610,6 +611,7 @@ const generalTools = [
     {
         id: 2,
         title: 'Convert to Financial Statements',
+        category:'financial-statements',
         tools: [
             {
                 id: 1,
@@ -1131,7 +1133,20 @@ const footerMenus = [
         id: 1,
         title: 'Solutions',
         links: [
-            { id: 1, title: 'Education', href: '#' },
+            { id: 4, title: 'Business Taxes For Beginners', href: '/blogs/small-business-taxes'},
+            { id: 1, title: 'Understanding Payroll', href: '/blogs/what-is-payroll-tax' },
+            { id: 2, title: 'Bussiness Taxation', href: '/blogs/navigating-complex-business-taxation-with-pocketcfo'},
+            { id: 3, title: 'World of Taxes', href: '/blogs/demystifying-the-world-of-taxes-with-pocketcfo'},
+            
+
+        ]
+
+    },
+    {
+        id: 3,
+        title: 'Product',
+        links: [
+            { id: 1, title: 'AI Converter', href: '#' },
             { id: 2, title: 'Invovation', href: '#' },
 
         ]
@@ -1141,31 +1156,24 @@ const footerMenus = [
         id: 2,
         title: 'Company',
         links: [
-            { id: 1, title: 'Education', href: '#' },
-            { id: 2, title: 'Invovation', href: '#' },
+            { id: 1, title: 'About Us', href:   '/' },
+            { id: 2, title: 'Contact Us', href: '/' },
+            { id: 3, title: 'Join Us', href: '/' },
+            
 
         ]
 
     },
-    {
-        id: 3,
-        title: 'Product',
-        links: [
-            { id: 1, title: 'Education', href: '#' },
-            { id: 2, title: 'Invovation', href: '#' },
+   
+    // {
+    //     id: 4,
+    //     title: '',
+    //     links: [
+    //         { id: 1, title: 'Education', href: '#' },
 
-        ]
+    //     ]
 
-    },
-    {
-        id: 4,
-        title: 'Apps',
-        links: [
-            { id: 1, title: 'Education', href: '#' },
-
-        ]
-
-    },
+    // },
 
 ]
 

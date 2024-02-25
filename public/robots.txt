@@ -1,0 +1,8 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.pocketcfos.com/
+# Sitemaps
+Sitemap: https://www.pocketcfos.com/sitemap.xml
