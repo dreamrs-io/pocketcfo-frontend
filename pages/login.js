@@ -11,10 +11,9 @@ import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import apiService from "@/api/ExternalApi";
 import Cookies from "js-cookie";
-import nextApi from "@/api/InternalApi";
-import { parse } from "cookie-js";
-import { redirect } from "next/navigation";
 import Head from "next/head";
+import { signIn } from "next-auth/react"
+import { getServerAuthSession } from "./api/auth/[...nextauth]";
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Login() {
@@ -110,37 +109,6 @@ function Logo() {
     )
 }
 
-
-
-
-export async function getServerSideProps(context) {
-    const cookies = parse(context.req.headers.cookie || '');
-    if (cookies.laravel_token) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    } else {
-
-        return {
-            props: {
-
-            },
-        };
-    }
-
-}
-
-
-
-
-
-
-
-
-
 function login_validate(values) {
 
     const errors = {};
@@ -159,5 +127,31 @@ function login_validate(values) {
         errors.password = "Invalid Password";
     }
     return errors;
+}
+
+
+export async function getServerSideProps(context) {
+
+    const session = await getServerAuthSession(context.req, context.res);
+
+
+    if (session) {
+        return {
+            redirect: {
+                destination: '/',
+                permanent: false,
+            },
+        }
+    }
+
+    return {
+        props: {
+
+
+        }
+    }
+
+
+
 }
 
