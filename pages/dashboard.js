@@ -12,12 +12,6 @@ const instances = [
         status: 'Working',
     }
 ]
-const companies = [
-    {
-
-    }
-]
-
 
 
 
@@ -110,8 +104,6 @@ function Instances() {
                                 <MdDelete size={24} className="text-red-600 cursor-pointer" />
                             </div>
                         </div>
-
-
                     ))
                 }
                 <div className="p-4 border-2 rounded-xl  border-dashed cursor-pointer">
@@ -130,13 +122,3 @@ function Instances() {
 }
 
 
-// NEXT_PUBLIC_LARAVEL_API=http://127.0.0.1:8000/api
-// NEXT_PUBLIC_BASE_URL=https://www.pocketcfos.com/
-// NEXTAUTH_SECRET=e3532f39c7254859407850e8aca22786
-// NEXTAUTH_URL=http://localhost:3000
-// GOOGLE_CLIENT_ID=926117187904-h9r2mqij58piue9s922p4sa9of7b4f3u.apps.googleusercontent.com
-// GOOGLE_CLIENT_SECRET=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
-// STRIPE_SECRET_KEY=sk_test_51NjxUbLRl3FQzHrDqQdKd246y4RftUid8f3Zppl7R6JlA4F0ICoJcOdwi9q3C3YTskkP3rNaVX1J4PSCzae4aGCr00svLMs9pT
-// STRIPE_WEBHOOK_SECRET=whsec_424fa3b9ec8dc4ba22372a6bdeee32fa1ff02403830335a0784f0f23f7a2dc6e
-// MONGODB_URI=mongodb://127.0.0.1:27017/pocketcfo
-// # MONGODB_URI=mongodb://terrygu:N3vtZyO7Sj84XN6v@ac-lp5v8lb-shard-00-00.e1htmm3.mongodb.net:27017,ac-lp5v8lb-shard-00-01.e1htmm3.mongodb.net:27017,ac-lp5v8lb-shard-00-02.e1htmm3.mongodb.net:27017/?ssl=true&replicaSet=atlas-138iul-shard-0&authSource=admin&retryWrites=true&w=majority

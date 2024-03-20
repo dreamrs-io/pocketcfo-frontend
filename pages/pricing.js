@@ -1,17 +1,32 @@
+import nextApi from "@/api/InternalApi";
 import ConversionLayout from "@/layouts/ConversionLayout";
 import Head from "next/head";
 import { useState } from "react";
-import { AiOutlineTeam } from "react-icons/ai";
-import { FiUser } from "react-icons/fi";
 
-export default function Pricing(){
-    const [tenure,setTenure] = useState('monthly')
+
+export default function Pricing() {
+    const [tenure, setTenure] = useState('monthly');
+
+    async function checkout(priceId) {
+
+        // first we make sure that user is aunthenticated
+
+        const checkout_session = await nextApi.getCheckoutSession(priceId);
+
+
+        window.location.href = checkout_session.subscription.url;
+
+
+    }
+
+
+
 
     return (
         <ConversionLayout>
             <Head>
                 <title>PocketCFO | Pricing</title>
-                <meta name="description" content= 'Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
+                <meta name="description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
                 <meta property="og:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
                 <meta name="twitter:title" content='pricing' />
                 <meta property="og:title" content='pricing' />
@@ -21,16 +36,16 @@ export default function Pricing(){
                 <meta property="og:image:height" content="400" /> */}
                 {/* <meta name="twitter:card" content="summary_large_image" /> */}
                 {/* <meta name="twitter:image" content={ogimgurl} /> */}
-            
-           
+
+
                 <link rel="canonical" href='https://www.pocketcfos.com/pricing' />
-            
+
             </Head>
             <div className="mx-auto max-w-6xl my-12">
                 <h2 className="text-center mb-4">Pocket CFO&apos;s That Fits Your Budget </h2>
                 <div className="flex justify-center">
-                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure=='monthly' ? 'bg-blue-200':''}`} onClick={()=>{setTenure('monthly')}}>Monthly</button>
-                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure=='yearly' ? 'bg-blue-200':''}`} onClick={()=>{setTenure('yearly')}}>Yearly (20% off)</button>
+                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'monthly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('monthly') }}>Monthly</button>
+                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'yearly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('yearly') }}>Yearly (20% off)</button>
                 </div>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 transition-all duration-200 my-10 max-w-4xl mx-auto">
                     <div className="p-4 bg-gray-100 rounded-md w-full ">
@@ -38,9 +53,9 @@ export default function Pricing(){
                             <p className="font-bold text-xl">Startup</p>
                         </div>
                         <div className="flex flex-col mt-4">
-                            <p className="text-4xl font-light">${tenure=='yearly'?Math.floor(48*12-((48*12)*0.20)):48}<span className="text-sm text-gray-400">/{tenure}</span></p>
+                            <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(48 * 12 - ((48 * 12) * 0.20)) : 48}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             <div className="flex justify-center my-8">
-                                <button className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
+                                <button onClick={() => { checkout('price_1OwQpjKOMTDoOrE4VmUZuS11') }} className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
                                     Get Started
                                 </button>
                             </div>
@@ -59,7 +74,7 @@ export default function Pricing(){
                             <p className="font-bold text-xl">Growth</p>
                         </div>
                         <div className="flex flex-col mt-4">
-                            <p className="text-4xl font-light">${tenure=='yearly'?Math.floor(88*12-((88*12)*0.20)):88}<span className="text-sm text-gray-400">/{tenure}</span></p>
+                            <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(88 * 12 - ((88 * 12) * 0.20)) : 88}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             <div className="flex justify-center my-8">
                                 <button className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
                                     Get Started
@@ -82,7 +97,7 @@ export default function Pricing(){
                         </div>
                         <div className="flex flex-col mt-4">
                             <div className="flex justify-between items-center">
-                                <p className="text-4xl font-light">${tenure=='yearly'?Math.floor(188*12-((188*12)*0.20)):188}<span className="text-sm text-gray-400">/{tenure}</span></p>
+                                <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(188 * 12 - ((188 * 12) * 0.20)) : 188}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             </div>
                             <div className="flex justify-center my-8">
                                 <button className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
