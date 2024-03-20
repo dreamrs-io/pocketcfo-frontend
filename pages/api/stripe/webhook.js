@@ -27,7 +27,7 @@ const webhookHandler = async (req, res) => {
 
     console.log(event_object);
 
-    if(event_object.object=='checkout.session'){
+    if (event_object.object == 'checkout.session') {
 
       if (event_object.status === 'complete' && event_object.payment_status === 'paid') {
 
@@ -37,29 +37,29 @@ const webhookHandler = async (req, res) => {
 
         // create the instances in database that will be linked to subscription that we created 
 
-       
-
-
-      console.log(event_object)
 
 
 
+        console.log(event_object)
+
+
+
+      }
+
+
+
+
+
+
+
+      res.status(200).send('Webhook Received');
+    } else {
+      res.setHeader('Allow', 'POST');
+      res.status(405).end('Method Not Allowed');
     }
+  };
 
-
-
-
-
-
-
-    res.status(200).send('Webhook Received');
-  } else {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
-  }
-};
-
-export default webhookHandler;
+  export default webhookHandler;
 
 
 
