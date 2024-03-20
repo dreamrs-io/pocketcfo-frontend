@@ -58,7 +58,7 @@ const webhookHandler = async (req, res) => {
       res.status(405).end('Method Not Allowed');
     }
   };
-
+}
   export default webhookHandler;
 
 
