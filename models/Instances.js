@@ -39,7 +39,7 @@ const instanceSchema = Schema({
             default:null
         }
     }
-});
+},{timestamps:true});
 
 const Instance = models.instance || model('instance', instanceSchema);
 

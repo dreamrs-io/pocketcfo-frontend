@@ -94,7 +94,7 @@ function Instances() {
 
     }
     useEffect(()=>{
-        getInstances
+        getInstances();
     },[])
 
 

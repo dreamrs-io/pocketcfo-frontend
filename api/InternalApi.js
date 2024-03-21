@@ -43,10 +43,11 @@ const nextApi = {
     },
     getInstances :async function (){
 
+
         try {
 
             const response = await axiosClient.post(`/instances`);
-            console.log(instances);
+            console.log(response);
             return response.data;
         
         } catch (error) {
