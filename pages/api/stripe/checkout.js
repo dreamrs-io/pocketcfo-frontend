@@ -4,7 +4,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 export default async function handler(req, res) {
 
   let customer;
-  let email = 'mohidfauji@gmail.com'
+  let email = 'mohidfauji@gmqqail.com'
     
     try {
         customer = await stripe.customers.list({ email: email, limit: 1 });

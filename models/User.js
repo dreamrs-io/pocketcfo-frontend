@@ -13,6 +13,10 @@ const userSchema = new Schema({
     },
     image:{
         type:String
+    },
+    stripe_customer_id:{
+        type:String,
+        default:null
     }
 }, { timestamps: true })
 
