@@ -24,6 +24,45 @@ const nextApi = {
             return error
         }
     },
+    getSubscriptionsPortal : async function (){
+
+        const id = toast.loading();
+        try {
+            
+            const response = await axiosClient.post(`/stripe/manage`);
+            toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
+            return response.data;
+        } catch (error) {
+            toast.update(id, { autoClose:900, render: "Error Occured", type: "error", isLoading: false });
+            return error
+        }
+
+
+
+
+    },
+    getInstances :async function (){
+
+        try {
+
+            const response = await axiosClient.post(`/instances`);
+            console.log(instances);
+            return response.data;
+        
+        } catch (error) {
+
+
+            console.log(error)
+
+            return error
+
+
+            
+        }
+
+
+
+    }
     
 
 

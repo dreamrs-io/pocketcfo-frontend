@@ -1,4 +1,5 @@
 import connectMongo from '@/database/conn';
+import Instance from '@/models/Instances';
 import User from '@/models/User';
 import { buffer } from 'micro';
 
@@ -6,74 +7,74 @@ const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SCERET_KEY);
 
 export const config = {
-  api: {
-    bodyParser: false,
-  },
+    api: {
+        bodyParser: false,
+    },
 };
 
 const webhookHandler = async (req, res) => {
-  
-  if (req.method === 'POST') {
-    const buf = await buffer(req);
-    const sig = req.headers['stripe-signature'];
-    let event;
-    
-    try {
-       event = stripe.webhooks.constructEvent(buf.toString(), sig, process.env.STRIPE_WEBHOOK_SECRET);
-     } catch (err) {
-      return res.status(400).send('Webhook Error: Invalid signature');
-    }
-    connectMongo();
 
-    console.log(event.type);
+    if (req.method === 'POST') {
+        const buf = await buffer(req);
+        const sig = req.headers['stripe-signature'];
+        let event;
+        try {
+            event = stripe.webhooks.constructEvent(buf.toString(), sig, process.env.STRIPE_WEBHOOK_SECRET);
+        } catch (err) {
+            return res.status(400).send('Webhook Error: Invalid signature');
+        }
 
-    switch(event.type){
+        connectMongo();
+        console.log(event.type);
+        switch (event.type) {
+        case 'customer.created':
+            await addCustomerStripeIdToDb(event.data.object);
+            break;
+        case 'checkout.session.completed':
+            await addSubscriptionsInDd(event.data.object);
+            break;
+        case 'invoice.created':
+            await addSubscriptionsInDd(event.data.object);
+            break;
 
-      case 'customer.created':
-        await addCustomerStripeIdToDb(event.data.object);
-        break;
+        default:
+            console.log(`Unhandled event type ${event.type}`);
+        }
+        res.status(200);
 
-      case 'customer.subscription.created':
-        console.log('RECEIVED EVENT FOR SUBSCRIPTION CREATION');
-        break;
-      
-      case 'customer.subscription.updated':
-        console.log('RECEIVED EVENT FOR SUBSCRIPTION UPDATION');
-        break;
-      
-      case 'payment_intent.succeeded':
-        console.log('RECEIVED EVENT FOR ');
-        break;
-
-
-      default:
-        console.log(`Unhandled event type ${event.type}`);
-
-
-        
+    } else {
+        res.setHeader('Allow', 'POST');
+        res.status(405).end('Method Not Allowed')
 
     }
-
-    res.status(200);
-
-
-
-  } else{
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed')
-
-  }
 }
-  export default webhookHandler;
+export default webhookHandler;
 
 
 
-async function addCustomerStripeIdToDb(customer){
-    const user  = await User.find({email:customer.email});
+async function addCustomerStripeIdToDb(customer) {
+    const user = await User.findOne({ email: customer.email });
     user.stripe_customer_id = customer.id;
     await user.save();
 }
 
+async function addSubscriptionsInDd(subscription) {
+    console.log(subscription);
+    if (subscription.payment_status == 'paid') {
+        const user = await User.findOne({ email: subscription.customer_details.email });
+        await Instance.create({
+            user_id:user.id,
+            stripe_subscription_id:subscription.subscription,
+        })
+    }
 
 
 
+}
+
+async function addInvoiceToDd(invoice){
+
+    console.log(invoice);
+
+
+}

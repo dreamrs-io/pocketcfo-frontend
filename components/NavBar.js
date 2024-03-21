@@ -8,13 +8,14 @@ import logoSVG from "@/public/assets/logo.svg"
 import Avatar from "avatar-initials"
 import Image from "next/image"
 import { signOut, useSession } from "next-auth/react"
+import nextApi from "@/api/InternalApi"
 
 
 export default function NavBar() {
 
     const { status, data: session, } = useSession()
 
-    useEffect(()=>{},[status])
+    useEffect(() => { }, [status])
 
     return (
         <nav className="p-2 px-10 border-b h-14  ">
@@ -79,7 +80,11 @@ function Logo() {
 
 
 
-function Profile({ user }) {    
+function Profile({ user }) {
+    async function portall() {
+        const portal = await nextApi.getSubscriptionsPortal();
+        window.location.href = portal.session.url;
+    }
     return (
         <div className="">
             <Menu as="div" className="inline-block text-left relative">
@@ -102,7 +107,7 @@ function Profile({ user }) {
                     </div>
                     <div className="p-2">
 
-                        <Link href={'/subscriptions'} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Subscriptions</Link>
+                        <button onClick={() => {portall()}} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Subscriptions</button>
                         <Link href={'/dashboard'} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Dashboard</Link>
                         <button onClick={() => { signOut() }} className="px-3 py-2 hover:bg-gray-100 w-full text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs ">
                             <span>Logout </span>

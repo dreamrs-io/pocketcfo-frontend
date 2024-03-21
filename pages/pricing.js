@@ -31,12 +31,7 @@ export default function Pricing() {
                 <meta name="twitter:title" content='pricing' />
                 <meta property="og:title" content='pricing' />
                 <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-                {/* <meta property="og:image" content=''/>
-                <meta property="og:image:width" content="400" />
-                <meta property="og:image:height" content="400" /> */}
-                {/* <meta name="twitter:card" content="summary_large_image" /> */}
-                {/* <meta name="twitter:image" content={ogimgurl} /> */}
-
+              
 
                 <link rel="canonical" href='https://www.pocketcfos.com/pricing' />
 

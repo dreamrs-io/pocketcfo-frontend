@@ -7,14 +7,17 @@ const instanceSchema = Schema({
         ref: 'user',
         required: true
     },
+    name:{ 
+        type:String,
+        default:'Instance Name' 
+    },
     instance_aws_id:{
         type:String,
-        required:true
+        default:null
     },
-    subscription_id: {
-        type: Schema.Types.ObjectId,
-        ref: 'subscription',
-        required: true
+    stripe_subscription_id: {
+        type: String,
+        required:true,
     },
     domain_name: {
         type: String,
@@ -25,12 +28,15 @@ const instanceSchema = Schema({
         required:true,
         default:1
     },
+    
     software_credentials: {
         email: {
-            type: String
+            type: String,
+            default:null
         },
         password: {
-            type: String
+            type: String,
+            default:null
         }
     }
 });
