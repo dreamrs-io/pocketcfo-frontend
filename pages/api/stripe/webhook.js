@@ -33,9 +33,6 @@ const webhookHandler = async (req, res) => {
         case 'checkout.session.completed':
             await addSubscriptionsInDd(event.data.object);
             break;
-        case 'invoice.created':
-            await addSubscriptionsInDd(event.data.object);
-            break;
 
         default:
             console.log(`Unhandled event type ${event.type}`);
@@ -59,7 +56,6 @@ async function addCustomerStripeIdToDb(customer) {
 }
 
 async function addSubscriptionsInDd(subscription) {
-    console.log(subscription);
     if (subscription.payment_status == 'paid') {
         const user = await User.findOne({ email: subscription.customer_details.email });
         await Instance.create({
@@ -67,14 +63,4 @@ async function addSubscriptionsInDd(subscription) {
             stripe_subscription_id:subscription.subscription,
         })
     }
-
-
-
-}
-
-async function addInvoiceToDd(invoice){
-
-    console.log(invoice);
-
-
 }
