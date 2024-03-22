@@ -9,13 +9,8 @@ export default async function handler(req, res) {
     if (!session){
         res.status(401).json({message:'Unauthorized'});
     }
-    console.log(session);
-    // authentication 
     connectMongo();
-
-    
-    const instances = await Instance.find();
-
+    const instances = await Instance.find({user_id:session.user.id});
     console.log(instances)
 
 
