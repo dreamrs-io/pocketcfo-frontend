@@ -37,6 +37,14 @@ const instanceSchema = Schema({
         password: {
             type: String,
             default:null
+        },
+        laravelKey : {
+            type:String,
+            default:null
+        },
+        jwtKey:{
+            type:String,
+            default:null
         }
     }
 },{timestamps:true});
