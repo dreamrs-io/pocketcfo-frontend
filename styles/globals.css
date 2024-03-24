@@ -44,6 +44,11 @@ h4{
   
  transition-all duration-300
 }
+.input-box-sm{ @apply border border-gray-300 block rounded-md w-full p-2 outline-none
+ placeholder:text-gray-300 focus:border-blue-600 text-xs
+  
+ transition-all duration-300
+}
 
 
 

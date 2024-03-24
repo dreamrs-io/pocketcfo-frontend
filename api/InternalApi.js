@@ -15,25 +15,25 @@ const nextApi = {
     getCheckoutSession: async function (priceId) {
         const id = toast.loading("Subscribing...");
         try {
-            
-            const response = await axiosClient.post(`/stripe/checkout`,{priceId:priceId});
+
+            const response = await axiosClient.post(`/stripe/checkout`, { priceId: priceId });
             toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
             return response.data;
         } catch (error) {
-            toast.update(id, { autoClose:900, render: "Error Occured", type: "error", isLoading: false });
+            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
             return error
         }
     },
-    getSubscriptionsPortal : async function (){
+    getSubscriptionsPortal: async function () {
 
         const id = toast.loading();
         try {
-            
+
             const response = await axiosClient.post(`/stripe/manage`);
             toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
             return response.data;
         } catch (error) {
-            toast.update(id, { autoClose:900, render: "Error Occured", type: "error", isLoading: false });
+            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
             return error
         }
 
@@ -41,30 +41,33 @@ const nextApi = {
 
 
     },
-    getInstances :async function (){
-
-
+    getInstances: async function () {
         try {
-
-            const response = await axiosClient.post(`/instances`);
-            console.log(response);
+            const response = await axiosClient.get(`/instances`);
             return response.data;
-        
         } catch (error) {
-
-
-            console.log(error)
-
             return error
 
-
-            
         }
 
 
 
+    },
+    updateInstance: async function ( data ) {
+        const id = toast.loading();
+        try {
+            const response = await axiosClient.post(`/instances`, data);
+            toast.update(id, { render: "Updated "+ data.name + " successfully", type: "success", isLoading: false });
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
+            return error
+        }
+
+
     }
-    
+
 
 
 
