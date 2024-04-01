@@ -59,7 +59,7 @@ export default function Dashboard() {
                     <Tab.Group>
                         <Tab.List className={`max-w-3xl mx-auto flex gap-4 items-center justify-center`}>
                             <Tab className={({ selected }) => `border-b-4 pb-1 outline-none font-bold text-gray-400 ${selected && '!text-blue-600 border-blue-600'}`}>Instances</Tab>
-                            <Tab className={({ selected }) => `border-b-4 pb-1 outline-none font-bold text-gray-400 ${selected && ' !text-blue-600 border-blue-600'}`}>Companies</Tab>
+                            {/* <Tab className={({ selected }) => `border-b-4 pb-1 outline-none font-bold text-gray-400 ${selected && ' !text-blue-600 border-blue-600'}`}>Companies</Tab> */}
 
                         </Tab.List>
                         <Tab.Panels className={({ selected }) => `mt-10 outline-none`} >
@@ -142,12 +142,12 @@ function SingleInstance({ i }) {
 
     }
 
-    function accessAdmin(){
-
+    async function  accessAdmin(){
 
         
+        const redirect_url  = await nextApi.redirectInstance({id:i._id})
+        window.open(redirect_url.url, '_blank');        
     }
-
 
     useEffect(() => {
 
@@ -165,8 +165,6 @@ function SingleInstance({ i }) {
                 <div className="mt-2 w-96">
                     <InstanceForm instance={i} setIsOpen={setIsOpen} />
                 </div>
-
-
             </Modal>
             <div className="p-4 border rounded-xl cursor-pointer shadow-md transition-all  hover:shadow-2xl" onClick={() => { handleClick() }}>
                 <div className="flex justify-between items-center">
@@ -181,7 +179,7 @@ function SingleInstance({ i }) {
                     </div>
                 </div>
                 <div className="flex justify-between items-center mt-4 ">
-                    <button disabled={i.status != 2} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
+                    <button disabled={i.status != 1} onClick={(e)=>{e.stopPropagation(); accessAdmin()}} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
                         Access Admin
                     </button>
                     <div className="flex gap-1">
