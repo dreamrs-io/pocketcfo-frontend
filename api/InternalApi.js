@@ -1,3 +1,4 @@
+import { ErrorCodes } from "@/utils/Errors";
 import axios from "axios";
 import { toast } from "react-toastify";
 const axiosClient = axios.create({
@@ -27,15 +28,22 @@ const nextApi = {
     getSubscriptionsPortal: async function () {
 
         const id = toast.loading('Redirecting.....');
-        console.log(id);
         try {
 
             const response = await axiosClient.post(`/stripe/manage`);
             toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
             return response.data;
         } catch (error) {
+            
+            if (error.response.data.code =='1000'){
+
+                toast.update(id, { autoClose: 900, render: ErrorCodes.NO_ACTIVE_SUBSCRIPTIONS.message, type: "warn", isLoading: false });
+
+                return null;
+
+            }
             toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
-            return error
+            return null ;
         }
 
 
@@ -50,9 +58,6 @@ const nextApi = {
             return error
 
         }
-
-
-
     },
     updateInstance: async function ( data ) {
         const id = toast.loading();

@@ -1,14 +1,34 @@
+import User from '@/models/User';
+import { getServerAuthSession } from '../auth/[...nextauth]';
+import { ErrorCodes } from '@/utils/Errors';
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
 export default async function handler(req, res) {
 
-    let customer_id = 'cus_PmR8hrSuTKSFw0'
+
+    const session = await getServerAuthSession(req, res)
+    if (!session) {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    let  user  = await User.findOne({_id:session.user.id});
+
+    if (!user.stripe_customer_id){
+
+
+        res.status(400).json(ErrorCodes.NO_ACTIVE_SUBSCRIPTIONS);
+
+        return;
+
+
+    }
 
     try {
 
         const session = await stripe.billingPortal.sessions.create({
-            customer: customer_id,
+            customer: user.stripe_customer_id,
             return_url: 'https://www.pocketcfos.com/dashboard',
         });
 

@@ -83,7 +83,10 @@ function Logo() {
 function Profile({ user }) {
     async function portall() {
         const portal = await nextApi.getSubscriptionsPortal();
-        window.location.href = portal.session.url;
+        if (portal){
+            window.location.href = portal.session.url;
+        }
+        
     }
     return (
         <div className="">

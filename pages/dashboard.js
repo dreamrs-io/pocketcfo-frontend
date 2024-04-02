@@ -12,16 +12,6 @@ import { useFormik } from "formik";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 
 
-const instances = [
-    {
-        name: 'Ab Traders',
-        created_at: '1 week ago',
-        status: 'Working',
-    }
-]
-
-
-
 export default function Dashboard() {
 
 
@@ -143,10 +133,14 @@ function SingleInstance({ i }) {
     }
 
     async function  accessAdmin(){
-
-        
         const redirect_url  = await nextApi.redirectInstance({id:i._id})
-        window.open(redirect_url.url, '_blank');        
+
+        if (redirect_url.url){
+
+            window.open(redirect_url.url, '_blank');  
+
+        }
+              
     }
 
     useEffect(() => {

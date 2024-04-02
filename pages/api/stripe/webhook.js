@@ -1,6 +1,7 @@
 import connectMongo from '@/database/conn';
 import Instance from '@/models/Instances';
 import User from '@/models/User';
+import Subscriptions from '@/pages/subscriptions';
 import { buffer } from 'micro';
 
 const Stripe = require('stripe');
@@ -33,6 +34,12 @@ const webhookHandler = async (req, res) => {
         case 'checkout.session.completed':
             await addSubscriptionsInDd(event.data.object);
             break;
+        case 'customer.deleted':
+            console.log(event.data.object)
+            break;
+        case 'customer.subscription.updated':
+            await updateSubscription(event.data.object);
+            break;
 
         default:
             console.log(`Unhandled event type ${event.type}`);
@@ -63,4 +70,11 @@ async function addSubscriptionsInDd(subscription) {
             stripe_subscription_id:subscription.subscription,
         })
     }
+}
+
+async function updateSubscription(subscription){
+    const dBsubscription = await Subscriptions.findOne({stripe_subscription_id:subscription.id});
+    dBsubscription.status = subscription.status;
+    await dBsubscription.save();
+    //send the webhook event 
 }
