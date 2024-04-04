@@ -2,8 +2,8 @@
 
 ## Stripe Integration Test Cases
 
-- [ ] User completed the checkout session but payment status was failed
-- [ ] User completed the checkout and payemnt status was successfull
+- [X] User completed the checkout session but payment status was failed
+- [X] User completed the checkout and payemnt status was successfull
 - [ ] User payment was not successfull for upcomming Month
 
 ## User Custom Instance Test Cases
