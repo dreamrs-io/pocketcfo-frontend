@@ -1,6 +1,20 @@
 
 
 const ErrorCodes = {
+    INVALID_EMAIL_ADDRESS:{
+        code: 12,
+        message: "Invalid email address!",
+
+    },
+    INVALID_PASSWORD:{
+        code: 13,
+        message: "Invalid password! Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.",
+    },
+    CREDENTIALS_UPDATES_NOT_ALLOWED:{
+        code: 13,
+        message: "Password Or Email Updates Not Allowed",
+    },
+
     NO_ACTIVE_SUBSCRIPTIONS: {
         message: "Don't have any active subscriptions",
         code: 1000
@@ -33,6 +47,7 @@ const ErrorCodes = {
         code: 400,
         message: "Subscription has been canceled. Please contact support for assistance.",
     },
+
 };
 
 

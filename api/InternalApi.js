@@ -1,6 +1,7 @@
 import { ErrorCodes } from "@/utils/Errors";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { resolve } from "styled-jsx/css";
 const axiosClient = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BACKEND_API}`,
     withCredentials: true,
@@ -60,17 +61,29 @@ const nextApi = {
         }
     },
     updateInstance: async function ( data ) {
-        const id = toast.loading();
+        const id = toast.loading('Updating......');
+        await new Promise(resolve => setTimeout(resolve, 2000));
         try {
             const response = await axiosClient.post(`/instances`, data);
-            toast.update(id, { render: "Updated "+ data.name + " successfully", type: "success", isLoading: false });
+            toast.update(id, { autoClose:1000, render: "Updated "+ data.name + " successfully", type: "success", isLoading: false });
             console.log(response);
             return response.data;
         } catch (error) {
-            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
-            return error
+            toast.update(id, {  autoClose:1000, render: error.response.data.message , type: "error", isLoading: false , });
         }
 
+
+    },
+    updatedInstancePasswrod: async function (instance_id,data){
+        const id = toast.loading('Updating......');
+        try {
+            const response = await axiosClient.post(`/instances/${instance_id}`, data);
+            toast.update(id, { autoClose:1000, render: "Updated successfully", type: "success", isLoading: false });
+            console.log(response);
+            return response.data;
+        } catch (error) {
+            toast.update(id, { autoClose:1000,   render: error.response.data.message , type: "error", isLoading: false , });
+        }
 
     },
     redirectInstance: async function ( data ) {

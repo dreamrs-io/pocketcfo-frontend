@@ -28,6 +28,10 @@ const instanceSchema = Schema({
         required:true,
         default:0
     },
+    subscription_status:{
+        type:String,
+        required:true
+    },
     
     software_credentials: {
         email: {

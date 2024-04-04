@@ -17,50 +17,62 @@ const INSTANCE_STATUS = [
         name: "Working",
         color: '#34d399'
     },
+   
+];
+
+const INSTANCE_SUBSCRIPTION_STATUS = [
+
+    {
+        id: 1,
+        name: "incomplete",
+        color: '#ef4444'
+    },
+    {
+        id: 2,
+        name: "incomplete_expired",
+        color: '#ef4444'
+    },
     {
         id: 3,
-        name: "Incomplete",
-        color: '#ef4444'
+        name: "trialing",
+        color: '#fbbf24'
     },
     {
         id: 4,
-        name: "Incomplete Expired",
-        color: '#ef4444'
+        name: "paused",
+        color: '#fbbf24'
     },
     {
         id: 5,
-        name: "Trialing",
-        color: '#fbbf24'
-    },
-    {
-        id: 6,
-        name: "Paused",
-        color: '#fbbf24'
-    },
-    {
-        id: 7,
-        name: "Active",
+        name: "active",
         color: '#10b981'
     },
     {
+        id: 6,
+        name: "past_due",
+        color: '#ef4444'
+    },
+    {
+        id: 7,
+        name: "canceled",
+        color: '#ef4444'
+    },
+    {
         id: 8,
-        name: "Past Due",
-        color: '#ef4444'
-    },
-    {
-        id: 9,
-        name: "Canceled",
-        color: '#ef4444'
-    },
-    {
-        id: 10,
-        name: "Unpaid",
+        name: "unpaid",
         color: '#ef4444'
     }
 ];
 
+
+function GET_SUBSCRIPTION_STATUS(status){
+
+    return INSTANCE_SUBSCRIPTION_STATUS.find(subscription => subscription.name === status)
+}
+
+
 export {
 
-    INSTANCE_STATUS
+    INSTANCE_STATUS,GET_SUBSCRIPTION_STATUS
 
 }

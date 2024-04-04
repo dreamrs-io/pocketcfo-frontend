@@ -1,13 +1,18 @@
+import { getServerAuthSession } from '../auth/[...nextauth]';
+
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
 export default async function handler(req, res) {
 
-    let customer;
-    let email = 'mohidfauji@gmail.com'
+    const session = await getServerAuthSession(req, res)
+    if (!session) {
+        res.status(401).json({ message: 'Unauthorized' });
+    }
+
     
     try {
-        customer = await stripe.customers.list({ email: email, limit: 1 });
+        customer = await stripe.customers.list({ email: session.user.email, limit: 1 });
         if (customer.data.length === 0) {
             customer = await stripe.customers.create({
                 email: email,
