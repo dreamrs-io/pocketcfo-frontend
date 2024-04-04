@@ -3,7 +3,7 @@ import { Dialog, Tab, Transition } from "@headlessui/react";
 import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { Fragment, useEffect, useState } from "react";
-import nextApi from "@/api/InternalApi";
+import nextApi from "@/apis/InternalApi";
 import { GET_SUBSCRIPTION_STATUS, INSTANCE_STATUS } from "@/constants";
 import moment from "moment";
 import { toast } from "react-toastify";

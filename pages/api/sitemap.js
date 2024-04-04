@@ -1,5 +1,5 @@
 
-import wordpressApi from '@/api/WordpressApi';
+import wordpressApi from '@/apis/WordpressApi';
 
 export default async function handler(req, res) {
     const baseUrl = 'https://www.pocketcfos.com/'

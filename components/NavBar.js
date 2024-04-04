@@ -8,7 +8,7 @@ import logoSVG from "@/public/assets/logo.svg"
 import Avatar from "avatar-initials"
 import Image from "next/image"
 import { signOut, useSession } from "next-auth/react"
-import nextApi from "@/api/InternalApi"
+import nextApi from "@/apis/InternalApi"
 
 
 export default function NavBar() {

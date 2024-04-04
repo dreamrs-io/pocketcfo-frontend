@@ -1,4 +1,4 @@
-import apiService from "@/api/ExternalApi";
+import apiService from "@/apis/ExternalApi";
 import { useEffect, useState } from "react";
 import { FaRegFilePdf } from "react-icons/fa"
 

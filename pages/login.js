@@ -9,7 +9,7 @@ import { Inter } from 'next/font/google';
 import logoSVG from "@/public/assets/logo.svg"
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import apiService from "@/api/ExternalApi";
+import apiService from "@/apis/ExternalApi";
 import Cookies from "js-cookie";
 import Head from "next/head";
 import { signIn } from "next-auth/react"

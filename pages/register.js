@@ -7,7 +7,7 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import { Inter } from 'next/font/google';
 import logoSVG from "@/public/assets/logo.svg"
-import apiService from "@/api/ExternalApi";
+import apiService from "@/apis/ExternalApi";
 import { useRouter } from "next/router";
 import { parse } from "cookie-js";
 import { toast } from "react-toastify";

@@ -1,4 +1,4 @@
-import nextApi from "@/api/InternalApi";
+import nextApi from "@/apis/InternalApi";
 import ConversionLayout from "@/layouts/ConversionLayout";
 import Head from "next/head";
 import { useState } from "react";

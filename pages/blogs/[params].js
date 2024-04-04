@@ -1,4 +1,4 @@
-import wordpressApi from "@/api/WordpressApi";
+import wordpressApi from "@/apis/WordpressApi";
 import MainLayout from "@/layouts/MainLayout";
 import moment from "moment";
 import Head from "next/head";
