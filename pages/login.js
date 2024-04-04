@@ -85,7 +85,7 @@ export default function Login() {
                                 <Link href={'/register'} className={` hover:underline`}  >
                                     Signup Here
                                 </Link>
-                            </div>
+                            </div> 
                         </form>
                     </div>
 
