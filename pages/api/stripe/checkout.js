@@ -10,6 +10,8 @@ export default async function handler(req, res) {
         res.status(401).json({ message: 'Unauthorized' });
     }
 
+    let customer = ''
+
     
     try {
         customer = await stripe.customers.list({ email: session.user.email, limit: 1 });
