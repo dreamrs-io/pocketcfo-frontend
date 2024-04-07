@@ -17,18 +17,17 @@ export default async function handler(req, res) {
     case 'POST':
         const { id } = req.query; 
         console.log(id)
-        const { email, password } = req.body;
-        const validationError = validateCredentials(email, password);
+        const { email } = req.body;
+        const validationError = validateCredentials(email);
         if (validationError) {
             return res.status(400).json(validationError);
         }
         try {
             const instance = await Instance.findOne({ _id: id });
-            if (instance.software_credentials.email != null || instance.software_credentials.password != null ){
+            if (instance.software_credentials.email != null ){
                 return res.status(400).json(ErrorCodes.CREDENTIALS_UPDATES_NOT_ALLOWED);
             }
             instance.software_credentials.email = email;
-            instance.software_credentials.password = password;
             instance.status = 1 ;
             await instance.save();
             res.status(202).json({message:'Updated'})
@@ -50,16 +49,12 @@ export default async function handler(req, res) {
 const validateCredentials = (email, password) => {
     // Regular expression to validate email format
     const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,7}$/;
-    // Password validation: at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
     if (!emailRegex.test(email)) {
         return ErrorCodes.INVALID_EMAIL_ADDRESS;
     }
 
-    if (!passwordRegex.test(password)) {
-        return ErrorCodes.INVALID_PASSWORD;
-    }
+
 
     return null; // Validation passed
 };

@@ -38,10 +38,10 @@ const instanceSchema = Schema({
             type: String,
             default:null
         },
-        password: {
-            type: String,
-            default:null
-        },
+        // password: {
+        //     type: String,
+        //     default:null
+        // },
         laravel_key : {
             type:String,
             default:null

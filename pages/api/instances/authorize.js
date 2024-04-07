@@ -18,7 +18,6 @@ export default async function handler(req, res) {
             const instance = await Instance.findOne({ _id: id });
             var credentials = {
                 email: instance.software_credentials.email,
-                password: instance.software_credentials.password,
                 timestamp: Date.now()
             };
 
