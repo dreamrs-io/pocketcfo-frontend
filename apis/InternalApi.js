@@ -101,6 +101,22 @@ const nextApi = {
 
 
     },
+    redirectToDemo:async function(){
+        const id = toast.loading('Please wait....');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const response = await axiosClient.get(`/instances/authorize`);
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 900 });
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return response.data;
+        } catch (error) {
+            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
+            return error
+        }
+
+
+
+    }
 
 
 

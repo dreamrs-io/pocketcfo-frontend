@@ -12,6 +12,27 @@ export default async function handler(req, res) {
 
     switch (req.method) {
 
+
+    case 'GET':
+        try {
+            var credentials = {
+                email: 'admin@mail.com',
+                timestamp: Date.now()
+            };
+            const cryption  = new Cryption('base64:jPMAS5iDh5vHWceGzWxS16CkiFH8ssZ7OV4S0kOIw+M=')
+            let encryptedToken  =  cryption.encrypt(JSON.stringify(credentials));
+            const redirectUrl = `http://demo.pocketcfos.com/auth/redirect?token=${encryptedToken}`
+            res.status(200).json({ url : redirectUrl })
+            
+        } catch (error) {
+
+            console.log(error)
+
+            res.status(500).json({ message: 'Server Error Occured' })
+            
+        }
+        break;
+
     case 'POST':
         const { id } = req.body;
         try {

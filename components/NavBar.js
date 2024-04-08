@@ -17,8 +17,21 @@ export default function NavBar() {
 
     useEffect(() => { }, [status])
 
+    async function handleClick(){
+
+        const r =  await nextApi.redirectToDemo();
+
+        if (r){
+
+            window.open(r.url, '_blank');
+    
+        }
+
+
+    }
+
     return (
-        <nav className="p-2 px-10 border-b h-14  ">
+        <nav className="p-2 px-6 border-b h-14  ">
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-8">
                     <Logo />
@@ -30,6 +43,13 @@ export default function NavBar() {
 
 
 
+                    
+                    <ul className="hidden sm:flex items-center gap-6  ">
+                        {/* <li className="link">Templates</li> */}
+                        <Link href={'/pricing'} className="link">Pricing</Link>
+                        <Link href={'/pricing'} className="link">Docs</Link>
+                        <button onClick={()=>{handleClick()}} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button>
+                    </ul>
                     <ul className="hidden md:flex items-center gap-4 border-l pl-4">
                         {
                             status == 'loading' ?
@@ -46,18 +66,13 @@ export default function NavBar() {
                                     :
                                     <>
                                         <Link href={'/login'} className="link">Login</Link>
-                                        <Link href={'/login'} className=" bg-blue-600 text-white px-4 py-2 font-semibold rounded-sm cursor-pointer text-sm whitespace-nowrap">Free Trial</Link>
+                                        {/* <Link href={'/login'} className=" bg-blue-600 text-white px-4 py-2 font-semibold rounded-sm cursor-pointer text-sm whitespace-nowrap">Free Trial</Link> */}
                                     </>
 
                         }
 
 
 
-                    </ul>
-                    <ul className="hidden sm:flex items-center gap-6  ">
-                        {/* <li className="link">Templates</li> */}
-                        <Link href={'/pricing'} className="link">Pricing</Link>
-                        <li className="link">Teams</li>
                     </ul>
 
                     <button className="md:hidden">
@@ -84,7 +99,7 @@ function Profile({ user }) {
     async function portall() {
         const portal = await nextApi.getSubscriptionsPortal();
         if (portal){
-            window.location.href = portal.session.url;
+            window.open(portal.session.url, '_blank');
         }
         
     }
@@ -93,7 +108,7 @@ function Profile({ user }) {
             <Menu as="div" className="inline-block text-left relative">
                 <div>
                     <Menu.Button className="link flex items-center - ">
-                        <Image src={user.image} width={40} height={40} alt="user" className="rounded-full" />
+                        <Image src={user.image} width={40} height={40} alt="user" className="rounded-full border-4 border-gray-200" />
                     </Menu.Button>
                 </div>
                 <Menu.Items className="absolute right-0  border shadow-2xl rounded-md bg-white  w-max">
