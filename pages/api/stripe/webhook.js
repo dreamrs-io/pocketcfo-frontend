@@ -31,11 +31,11 @@ const webhookHandler = async (req, res) => {
 
     if (event.type == 'customer.subscription.created') {
         await addSubscriptionsInDd(event.data.object);
-        res.status(200);
+        res.status(200).send('Webhook Received Successfully');
     }
     if (event.type == 'customer.subscription.updated') {
         await updateSubscription(event.data.object);
-        res.status(200);
+        res.status(200).send('Webhook Received Successfully');
     }
 
 }
