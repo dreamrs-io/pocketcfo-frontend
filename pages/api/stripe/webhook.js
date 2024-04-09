@@ -35,32 +35,55 @@ const webhookHandler = async (req, res) => {
     }
     if (event.type == 'customer.subscription.updated') {
         await updateSubscription(event.data.object);
-        res.status(200).send('Webhook Received Successfully');
+
     }
+    setTimeout(() => {
+        res.status(200).send('Webhook Received Successfully');
+    }, 1000)
 
 }
 export default webhookHandler;
 
 
 async function addSubscriptionsInDd(subscription) {
-    console.log(subscription)
-    const user = await User.findOne({ stripe_customer_id: subscription.customer });
-    console.log(user);
-    await Instance.create({
-        user_id: user.id,
-        stripe_subscription_id: subscription.id,
-        subscription_status: subscription.status
-    });
+    try {
+        console.log(subscription)
+        const user = await User.findOne({ stripe_customer_id: subscription.customer });
+        console.log(user);
+        await Instance.create({
+            user_id: user.id,
+            stripe_subscription_id: subscription.id,
+            subscription_status: subscription.status
+        });
+    } catch (error) {
+
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error', message: err.message })
+
+    }
 }
 
 async function updateSubscription(subscription) {
-    console.log(subscription)
-    const dBsubscription = await Instance.findOne({ stripe_subscription_id: subscription.id });
-    console.log(dBsubscription)
-    dBsubscription.subscription_status = subscription.status;
-    if (dBsubscription.status == 2 && subscription.status != 'active') {
-        dBsubscription.status == 3
+
+    try {
+
+        console.log(subscription)
+        const dBsubscription = await Instance.findOne({ stripe_subscription_id: subscription.id });
+        console.log(dBsubscription)
+        dBsubscription.subscription_status = subscription.status;
+        if (dBsubscription.status == 2 && subscription.status != 'active') {
+            dBsubscription.status == 3
+        }
+        await dBsubscription.save();
+
+    } catch (error) {
+
+
+        console.log(error);
+        res.status(500).json({ error: 'Internal Server Error', message: err.message })
+
+
     }
-    await dBsubscription.save();
+
     //send the webhook event 
 }
