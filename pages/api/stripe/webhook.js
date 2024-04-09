@@ -35,11 +35,8 @@ const webhookHandler = async (req, res) => {
     }
     if (event.type == 'customer.subscription.updated') {
         await updateSubscription(event.data.object);
-
-    }
-    setTimeout(() => {
         res.status(200).send('Webhook Received Successfully');
-    }, 1000)
+    }
 
 }
 export default webhookHandler;
