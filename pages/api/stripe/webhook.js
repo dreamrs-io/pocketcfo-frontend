@@ -24,21 +24,24 @@ const webhookHandler = async (req, res) => {
             return res.status(400).send('Webhook Error: Invalid signature');
         }
 
-        connectMongo();
+        await connectMongo();
         switch (event.type) {
-        case 'customer.created':
-            await addCustomerStripeIdToDb(event.data.object);
-            break;
+        // case 'customer.created':
+        //     await addCustomerStripeIdToDb(event.data.object);
+        //     break;
         case 'customer.subscription.created':
             await addSubscriptionsInDd(event.data.object);
+            res.status(200);
             break;
         case 'customer.subscription.updated':
             console.log(event.data.object)
             await updateSubscription(event.data.object);
+            res.status(200);
             break;
         default:
             console.log(`${event.type}`);
         }
+        console.log('Executed')
         res.status(200);
     } else {
         res.setHeader('Allow', 'POST');
@@ -49,15 +52,10 @@ const webhookHandler = async (req, res) => {
 export default webhookHandler;
 
 
-
-async function addCustomerStripeIdToDb(customer) {
-    const user = await User.findOne({ email: customer.email });
-    user.stripe_customer_id = customer.id;
-    await user.save();
-}
-
 async function addSubscriptionsInDd(subscription) {
+    console.log(subscription)
     const user = await User.findOne({ stripe_customer_id : subscription.customer });
+    console.log(user);
     await Instance.create({
         user_id: user.id,
         stripe_subscription_id: subscription.id,
@@ -68,6 +66,9 @@ async function addSubscriptionsInDd(subscription) {
 async function updateSubscription(subscription) {
     const dBsubscription = await Instance.findOne({ stripe_subscription_id: subscription.id });
     dBsubscription.subscription_status = subscription.status;
+    if (dBsubscription.status==2 && subscription.status != 'active'){
+        dBsubscription.status==3
+    }
     await dBsubscription.save();
     //send the webhook event 
 }

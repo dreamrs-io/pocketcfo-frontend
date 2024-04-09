@@ -7,47 +7,36 @@ const instanceSchema = Schema({
         ref: 'user',
         required: true
     },
-    name:{ 
-        type:String,
-        default:'Instance Name' 
+    name: {
+        type: String,
+        default: 'Instance Name'
     },
-    instance_aws_id:{
-        type:String,
-        default:null
+    instance_aws_id: {
+        type: String,
+        default: null
     },
     stripe_subscription_id: {
         type: String,
-        required:true,
+        required: true,
     },
     domain_name: {
         type: String,
         default: 'pocketcfo.com'
     },
-    status:{
-        type:Number,
-        required:true,
-        default:0
+    status: {
+        type: Number,
+        required: true,
+        default: 1
     },
-    subscription_status:{
-        type:String,
-        required:true
+    subscription_status: {
+        type: String,
+        required: true
     },
-    
-    software_credentials: {
-        email: {
-            type: String,
-            default:null
-        },
-        // password: {
-        //     type: String,
-        //     default:null
-        // },
-        laravel_key : {
-            type:String,
-            default:null
-        },
-    }
-},{timestamps:true});
+    laravel_key: {
+        type: String,
+        default: null
+    },
+}, { timestamps: true });
 
 const Instance = models.instance || model('instance', instanceSchema);
 

@@ -1,6 +1,7 @@
 import '@/styles/globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-tippy/dist/tippy.css';
 import NextNProgress from 'nextjs-progressbar';
 import { SessionProvider } from "next-auth/react"
 import { GoogleAnalytics } from '@next/third-parties/google'

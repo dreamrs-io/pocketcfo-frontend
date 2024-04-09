@@ -1,3 +1,4 @@
+import User from '@/models/User';
 import { getServerAuthSession } from '../auth/[...nextauth]';
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -9,6 +10,7 @@ export default async function handler(req, res) {
     if (!session) {
         res.status(401).json({ message: 'Unauthorized' });
     }
+    console.log(session.user);
 
     let customer = ''
 
@@ -19,12 +21,13 @@ export default async function handler(req, res) {
             customer = await stripe.customers.create({
                 email: email,
             });
+            const user = User.findOne(session.user.id)
+            user.stripe_customer_id= customer.id
         } else {
             customer = customer.data[0];
         }
     } catch (error) {
 
-        console.log(error)
 
         res.status(400).json({error:'Error Occured while creating the new customer'})
         

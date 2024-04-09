@@ -74,18 +74,18 @@ const nextApi = {
 
 
     },
-    updatedInstancePasswrod: async function (instance_id,data){
-        const id = toast.loading('Updating......');
-        try {
-            const response = await axiosClient.post(`/instances/${instance_id}`, data);
-            toast.update(id, { autoClose:1000, render: "Updated successfully", type: "success", isLoading: false });
-            console.log(response);
-            return response.data;
-        } catch (error) {
-            toast.update(id, { autoClose:1000,   render: error.response.data.message , type: "error", isLoading: false , });
-        }
+    // updatedInstancePasswrod: async function (instance_id,data){
+    //     const id = toast.loading('Updating......');
+    //     try {
+    //         const response = await axiosClient.post(`/instances/${instance_id}`, data);
+    //         toast.update(id, { autoClose:1000, render: "Updated successfully", type: "success", isLoading: false });
+    //         console.log(response);
+    //         return response.data;
+    //     } catch (error) {
+    //         toast.update(id, { autoClose:1000,   render: error.response.data.message , type: "error", isLoading: false , });
+    //     }
 
-    },
+    // },
     redirectInstance: async function ( data ) {
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));

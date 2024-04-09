@@ -4,12 +4,13 @@ import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { Fragment, useEffect, useState } from "react";
 import nextApi from "@/apis/InternalApi";
-import { GET_SUBSCRIPTION_STATUS, INSTANCE_STATUS } from "@/constants";
+import { GET_INSTANCE_STATUS, GET_SUBSCRIPTION_STATUS, INSTANCE_STATUS } from "@/constants";
 import moment from "moment";
 import { toast } from "react-toastify";
 import Modal from "@/components/common/Modal";
 import { useFormik } from "formik";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
+import { Tooltip } from "react-tippy";
 
 
 export default function Dashboard() {
@@ -150,11 +151,6 @@ function SingleInstance({ i }) {
             })
             return;
         }
-        if (i.status == '0') {
-            toast.warn('Please setup your credentials for the ' + i.name, {
-                position: toast.POSITION.TOP_RIGHT
-            })
-        }
 
     })
 
@@ -177,18 +173,24 @@ function SingleInstance({ i }) {
                     </div>
                 </div>
                 <div className="flex justify-between items-center mt-4 ">
-                    <button disabled={i.status != 1} onClick={(e) => { e.stopPropagation(); accessAdmin() }} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
-                        Access Admin
-                    </button>
+                    <Tooltip
+                        // followCursor
+                        html={<p className="text-xs">{GET_INSTANCE_STATUS(i.status,i.subscription_status).message}</p>}
+                        position="bottom"
+                        trigger="mouseenter"
+                        arrow={true}
+                        
+                    >
+                        <button disabled={i.status == 1 } onClick={(e) => { e.stopPropagation(); accessAdmin() }} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
+                            Access Admin
+                        </button>
 
-                    {/* <div className="flex gap-1">
-                        <MdDelete size={18} className="text-red-400  cursor-pointer" />
-                        <MdEdit size={18} className="text-blue-400 cursor-pointer" onClick={() => { handleClick() }} />
-                    </div> */}
+                    </Tooltip>
                 </div>
             </div>
         </>
     );
+
 }
 
 function Loader() {
@@ -217,23 +219,22 @@ function Loader() {
 
 function InstanceForm({ instance, setIsOpen }) {
 
-    const [showPassword, setShowPassword] = useState(false);
+    // const [showPassword, setShowPassword] = useState(false);
 
-    const formik = useFormik({
-        initialValues: {
-            password: instance.software_credentials.password,
-            email: instance.software_credentials.email,
+    // const formik = useFormik({
+    //     initialValues: {
+    //         password: instance.software_credentials.password,
+    //         email: instance.software_credentials.email,
 
-        },
-        validate: instance_form_validate,
-        onSubmit
-    })
-    async function onSubmit(values) {
-        console.log(values);
-        console.log(instance._id);
-        const r = await nextApi.updatedInstancePasswrod(instance._id, values);
-        setIsOpen(false);
-    }
+    //     },
+    //     validate: instance_form_validate,
+    //     onSubmit
+    // })
+    // async function onSubmit(values) {
+
+    //     const r = await nextApi.updatedInstancePasswrod(instance._id, values);
+    //     setIsOpen(false);
+    // }
 
 
 
@@ -266,26 +267,25 @@ function InstanceForm({ instance, setIsOpen }) {
     return (
 
         <div>
-            <form onSubmit={nameFormik.handleSubmit} className="flex justify-between items-center ">
+            <form onSubmit={nameFormik.handleSubmit} className="flex justify-between items-center gap-2 ">
                 <div className="my-4 w-full">
                     <label className="input-wrapper !text-xs">Name</label>
                     <input className={`input-box-sm  ${nameFormik.errors.name && nameFormik.touched.name ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
                         type='text' id='name' placeholder="AZ Traders" {...nameFormik.getFieldProps('name')} />
                     {nameFormik.errors.name && nameFormik.touched.name ? <div className='mt-2 font-bold text-sm text-rose-500'>{nameFormik.errors.name}</div> : <></>}
                 </div>
-                {
-                    nameFormik.dirty &&
-                    <button
-                        type="submit"
-                        disabled={!nameFormik.dirty}
-                        className=" disabled:cursor-not-allowed h-fit mt-5 px-4 py-2 inline-block rounded-md border border-transparent bg-blue-100 2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                    >
-                        Update
-                    </button>
-                }
+
+                <button
+                    type="submit"
+                    disabled={!nameFormik.dirty}
+                    className=" disabled:cursor-not-allowed h-fit mt-5 px-4 py-2 inline-block rounded-md border border-transparent bg-blue-100 2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                >
+                    Update
+                </button>
+
 
             </form>
-            <form onSubmit={formik.handleSubmit} className="w-full">
+            {/* <form onSubmit={formik.handleSubmit} className="w-full">
                 <p className="text-sm font-semibold text-center mt-10">Your email and password is required for your software to be launched and access it</p>
                 <div className="my-4">
                     <input type="hidden" {...formik.getFieldProps('id')} />
@@ -331,29 +331,11 @@ function InstanceForm({ instance, setIsOpen }) {
                     </button>
                 </div>
 
-            </form>
+            </form> */}
 
         </div>
 
 
 
     )
-}
-
-function instance_form_validate(values) {
-
-    const errors = {};
-
-    if (!values.email) {
-        errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-    }
-    if (!values.password) {
-        errors.password = "Required";
-    } else if (values.password.length < 8 || values.password.length > 20) {
-        errors.password = "Must be greater then 8 and less then 20 characters long";
-    }
-    return errors;
-
 }
