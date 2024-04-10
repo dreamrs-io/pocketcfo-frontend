@@ -48,7 +48,7 @@ export default function NavBar() {
                         {/* <li className="link">Templates</li> */}
                         <Link href={'/pricing'} className="link">Pricing</Link>
                         <Link href={'/pricing'} className="link">Docs</Link>
-                        <button onClick={()=>{handleClick()}} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button>
+                        <button id="demo" onClick={()=>{handleClick()}} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button>
                     </ul>
                     <ul className="hidden md:flex items-center gap-4 border-l pl-4">
                         {
