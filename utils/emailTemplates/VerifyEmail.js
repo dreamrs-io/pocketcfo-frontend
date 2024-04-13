@@ -1,0 +1,26 @@
+export function confirmationEmailTemplate(verificationLink,username){
+
+    const htmlString =`<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Email Verification</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="bg-gray-200 h-screen flex flex-col justify-center items-center">
+    <a class="flex gap-1 items-center" href="/">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40"  viewBox="0 0 166 197"><defs><style>.cls-1{fill:#2563eb;}</style></defs><g id="Logo"><path id="FontAwsome_calculator_" data-name="FontAwsome calculator " class="cls-1" d="M134.88,13.85H24A15.7,15.7,0,0,0,8.89,29.33V163.51A15.69,15.69,0,0,0,24,179H134.88A15.69,15.69,0,0,0,150,163.52V29.33A15.69,15.69,0,0,0,134.88,13.85ZM49.21,154.22a4.39,4.39,0,0,1-4,4.13H33.09a4.38,4.38,0,0,1-4-4.13V141.84a4.4,4.4,0,0,1,4-4.13H45.18a4.4,4.4,0,0,1,4,4.13Zm0-41.28a4.39,4.39,0,0,1-4,4.12H33.09a4.38,4.38,0,0,1-4-4.12V100.56a4.38,4.38,0,0,1,4-4.13H45.17a4.39,4.39,0,0,1,4,4.12Zm40.32,41.28a4.39,4.39,0,0,1-4,4.13H73.41a4.39,4.39,0,0,1-4-4.13V141.84a4.4,4.4,0,0,1,4-4.13H85.5a4.39,4.39,0,0,1,4,4.12v12.38Zm0-41.28a4.39,4.39,0,0,1-4,4.12H73.41a4.39,4.39,0,0,1-4-4.12V100.56a4.38,4.38,0,0,1,4-4.13H85.49a4.38,4.38,0,0,1,4,4.12v12.38Zm40.31,41.28a4.39,4.39,0,0,1-4,4.13H113.72a4.39,4.39,0,0,1-4-4.13V100.55a4.39,4.39,0,0,1,4-4.12H125.8a4.38,4.38,0,0,1,4,4.12v53.67Zm0-82.57a4.4,4.4,0,0,1-4,4.13H33.08a4.4,4.4,0,0,1-4-4.13v-33a4.4,4.4,0,0,1,4-4.13h92.73a4.4,4.4,0,0,1,4,4.13Z"/></g></svg>
+      <p class="text-2xl font-extrabold">PocketCFO</p>
+    </a>
+    <div class="flex flex-col gap-4 mt-10">
+      <h4 class="text-3xl">Email Verification</h4>
+      <p class="">Hi ${username},</p>
+      <p>You are almost setup please click the link below to verify your email</p>
+      <a href=${verificationLink} class="bg-blue-600 cursor-pointer w-full text-center p-4 text-white font-bold">Verify my email address</a>
+    </div>
+  </div>
+</body>
+</html>`
+    return htmlString
+}

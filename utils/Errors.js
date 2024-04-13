@@ -1,6 +1,26 @@
 
 
 const ErrorCodes = {
+    EMAIL_ALREADY_REGISTERED_WITH_GOOGLE:{
+        code:12,
+        message:"Email already registered with a google account"
+    },
+    EMAIL_ALREADY_EXISTS:{
+        code:12,
+        message:"Email already Registered"
+    },
+    EMIAL_NOT_FOUND:{
+        code:12,
+        message:"Email address not found"
+    }, 
+    PASSWORDS_DONT_MATCH:{
+        code:12,
+        message:"Password dont match"
+    },
+    PASSWORDS_NOT_CORRECT:{
+        code:12,
+        message:"Email address not found"
+    },
     INVALID_EMAIL_ADDRESS:{
         code: 12,
         message: "Invalid email address!",

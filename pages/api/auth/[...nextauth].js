@@ -2,33 +2,61 @@ import connectMongo from "@/database/conn"
 import User from "@/models/User"
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import CredentialsProvider from "next-auth/providers/credentials"
+import bcrypt from 'bcrypt';
 export const authOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         }),
+        CredentialsProvider({
+            name: "Credentials",
+            async authorize(credentials, req) {
+                connectMongo().catch(error => { error: 'Connection Failed' })
+                const user = await User.findOne({ email: credentials.email })
+                if (!user) { throw new Error('No user Found with this Email') }
+                const passwordMatch = await bcrypt.compare(credentials.password, user.password);
+                if (passwordMatch) {
+                    return user;
+                } else {
+                    throw new Error('Password is Incorrect')
+                }
+            }
+            // async authorize(credentials) {
+            //     await connectMongo().catch(error => { console.log(error) });
+            //     const user = await User.findOne({ 'email': credentials.email });
+            //     if (user) {
+            //         const passwordMatch = await bcrypt.compare(credentials.password, user.password);
+            //         if (passwordMatch) {
+            //             return {user};
+            //         } else {
+            //             return null;
+            //         }
+            //     } else {
+
+            //         return null;
+            //     }
+
+            // }
+        })
     ],
     callbacks: {
         async signIn({ user }) {
             if (user) {
-
                 await connectMongo().catch(error => { console.log(error) })
                 let u = await User.findOne({ 'email': user.email })
                 if (u) {
                     user.id = u._id.toString();
-                    user.role = u.role
-                    user.permissions = u.permissions;
                     return { user };
                 } else {
                     u = await User.create({
                         name: user.name,
                         email: user.email,
-                        image:user.image
+                        image: user.image,
+                        provider: 'google'
                     })
                     user.id = u._id.toString();
-                    user.role = u.role;
-                    user.permissions = u.permissions;
                     return { user };
                 }
 
@@ -49,6 +77,7 @@ export const authOptions = {
         async session({ session, token }) {
             if (token) {
                 session.user = token.user;
+
             }
             return session;
         }

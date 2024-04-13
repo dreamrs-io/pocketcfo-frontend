@@ -1,20 +1,27 @@
 import Image from "next/image";
-import heroImg from '@/public/assets/introduction.svg'
+import logo from '@/public/assets/logo.svg'
 import { useRef } from "react";
-export default function Home(){
+import Link from "next/link";
+export default function Home() {
 
-
-    const handleMouseClick = (event) => {
-
-        const mouseX = event.clientX;
-        const mouseY = event.clientY;
-        console.log('Mouse X:', mouseX, 'Mouse Y:', mouseY);
-        
-    }
-    return(
-        <div className="border border-black w-[500px] h-[500px] " onClick={handleMouseClick}>
-            <Image src={heroImg}   width={900} alt="svgart"   className="" />
+    return (
+        <div className="bg-gray-200 h-screen flex flex-col justify-center items-center">
+            <Logo/>
+            <div className="flex flex-col gap-4 mt-10">
+                <h4>Email Verification</h4>
+                <p>Hi username,</p>
+                <p>You are almost setup please click the link below to verify your email</p>
+                <a className="bg-blue-600 w-full text-center p-4 text-white font-bold">Verify my email address</a>
+            </div>
         </div>
-
     );
+}
+
+function Logo() {
+    return (
+        <Link href={'/'} className="flex gap-1 items-center">
+            <Image className="" alt="logo" src={logo} width={40} height={20} />
+            <p className="text-2xl font-extrabold">PocketCFO</p>
+        </Link>
+    )
 }

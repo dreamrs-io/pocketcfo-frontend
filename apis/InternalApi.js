@@ -116,6 +116,23 @@ const nextApi = {
 
 
 
+    },
+    register:async function(data){
+
+        const id = toast.loading('Please wait....');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const response = await axiosClient.post(`/auth/register`,data);
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 900 });
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            return response;
+        } catch (error) {
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
+            return error
+        }
+
+
+
     }
 
 

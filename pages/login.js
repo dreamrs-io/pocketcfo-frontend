@@ -30,18 +30,21 @@ export default function Login() {
         onSubmit
     })
     async function onSubmit(values) {
-        const res = await apiService.sigin(values);
-        if (res.status == true) {
-            const u = {
-                accessToken: res.data.accessToken,
-                username: res.data.user.name,
-                email: res.data.user.email,
-            }
-            Cookies.set('laravel_token', JSON.stringify(u), { expires: 7 })
-            toast.success('Loggin In')
-            router.push('/');
-        } else {
-            toast.error(res.message);
+        const id = toast.loading('Please wait....');
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        const req = await signIn('credentials', {
+            email: values.email,
+            password: values.password,
+            redirect:false
+        })
+
+        if (req.ok){
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 1000 });
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            router.push('/')
+        }
+        if (req.error){
+            toast.update(id, { autoClose: 1000, render: req.error, type: "error", isLoading: false });
         }
 
     }
@@ -78,14 +81,14 @@ export default function Login() {
                             </div>
                             <div className="flex flex-col gap-2 mt-4">
                                 <Button type='submit' label="Login" width="w-full" />
-                                <Button type='button' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
+                                <Button type='button' id='google' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
                             </div>
                             <div className="flex  justify-center mt-4 items-center gap-2" >
                                 <p className="text-gray-400 text-sm">{"Don't have an account yet"}</p>
                                 <Link href={'/register'} className={` hover:underline`}  >
                                     Signup Here
                                 </Link>
-                            </div> 
+                            </div>
                         </form>
                     </div>
 
