@@ -10,6 +10,10 @@ const imageUrl = '/assets';
 
 export default async function handler(req, res) {
 
+    if (req.method!='POST'){
+        res.status(405)
+    }
+
 
     await connectMongo();
 
@@ -33,32 +37,27 @@ export default async function handler(req, res) {
     }
 
     try {
-        let user = await User.create({
+        await User.create({
             name: username,
             email: email,
             image: '/assets/profile.png',
             provider: 'credentials',
             password: password
         })
-        // var credentials = {
-        //     email: email,
-        //     timestamp: Date.now()
-        // };
-        // const cryption = new Cryption(process.env.APP_KEY)
-        // let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
-        // const verificationLink = `https://pocketcfos.com/auth/redirect?token=${encryptedToken}`
-        // const emailTemplate = confirmationEmailTemplate(verificationLink, username)
-        // const a = await sendEmail(email, 'Email Verification', emailTemplate)
-        // console.log(a);
 
+        var credentials = {
+            email: email,
+            timestamp: Date.now()
+        };
+
+        const cryption = new Cryption(process.env.APP_KEY)
+        let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
+        const verificationLink = `https://pocketcfos.com/auth/redirect?token=${encryptedToken}`
+        const emailTemplate = confirmationEmailTemplate(verificationLink, username)
+        sendEmail(email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
         res.status(201).json({ message: 'Created Successfully' });
-
     } catch (error) {
-
-        console.log(error)
-
-        res.status(400).json({ message: 'Error Occured' });
-
+        res.status(400).json(ErrorCodes.GENERAL_SERVER_ERROR);
     }
 
 }

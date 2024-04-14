@@ -1,6 +1,26 @@
 
 
 const ErrorCodes = {
+    ERROR_WHILE_SENDING_VERIFICATION_EMAIL:{
+        code:12,
+        message:"We couldn't send a verification email at the moment"
+
+    },
+    GENERAL_SERVER_ERROR:{
+        code:12,
+        message:"Server error occured while processing your request"
+
+    },
+    TOKEN_EXPIRED:{
+        code:12,
+        message:"Token Expired"
+
+    },
+    USER_ALREADY_VERIFIED:{
+        code:12,
+        message:"User Already verified"
+
+    },
     EMAIL_ALREADY_REGISTERED_WITH_GOOGLE:{
         code:12,
         message:"Email already registered with a google account"

@@ -74,18 +74,6 @@ const nextApi = {
 
 
     },
-    // updatedInstancePasswrod: async function (instance_id,data){
-    //     const id = toast.loading('Updating......');
-    //     try {
-    //         const response = await axiosClient.post(`/instances/${instance_id}`, data);
-    //         toast.update(id, { autoClose:1000, render: "Updated successfully", type: "success", isLoading: false });
-    //         console.log(response);
-    //         return response.data;
-    //     } catch (error) {
-    //         toast.update(id, { autoClose:1000,   render: error.response.data.message , type: "error", isLoading: false , });
-    //     }
-
-    // },
     redirectInstance: async function ( data ) {
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -118,21 +106,42 @@ const nextApi = {
 
     },
     register:async function(data){
-
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
             const response = await axiosClient.post(`/auth/register`,data);
-            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 900 });
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false, autoClose: 900 });
+            return response;
+        } catch (error) {
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
+            return error
+        }
+    },
+    verifyEmail:async function(token){
+        const id = toast.loading('Verifying your email please wait.....');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const response = await axiosClient.post(`/auth/verify-email`,{token:token});
+            toast.update(id, { render: "Email verified redirecting.......", type: "success", isLoading: false, autoClose: 1500 });
             return response;
         } catch (error) {
             toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
             return error
         }
 
-
-
+    },
+    requestNewEmailVerification:async function(){
+        const id = toast.loading('Sending verification email.....');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const response = await axiosClient.get(`/auth/verify-email`);
+            toast.update(id, { render: "Email sent", type: "success", isLoading: false, autoClose: 1500 });
+            return response;
+        } catch (error) {
+            console.log(error)
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
+            return error
+        }
     }
 
 

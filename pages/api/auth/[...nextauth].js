@@ -23,22 +23,6 @@ export const authOptions = {
                     throw new Error('Password is Incorrect')
                 }
             }
-            // async authorize(credentials) {
-            //     await connectMongo().catch(error => { console.log(error) });
-            //     const user = await User.findOne({ 'email': credentials.email });
-            //     if (user) {
-            //         const passwordMatch = await bcrypt.compare(credentials.password, user.password);
-            //         if (passwordMatch) {
-            //             return {user};
-            //         } else {
-            //             return null;
-            //         }
-            //     } else {
-
-            //         return null;
-            //     }
-
-            // }
         })
     ],
     callbacks: {
@@ -54,7 +38,8 @@ export const authOptions = {
                         name: user.name,
                         email: user.email,
                         image: user.image,
-                        provider: 'google'
+                        provider: 'google',
+                        verfied:true
                     })
                     user.id = u._id.toString();
                     return { user };
@@ -69,15 +54,16 @@ export const authOptions = {
                     id: user.id,
                     email: user.email,
                     name: user.name,
-                    image: user.image
+                    image: user.image,
+                    verified:user.verified
                 };
             }
+            
             return token;
         },
         async session({ session, token }) {
             if (token) {
                 session.user = token.user;
-
             }
             return session;
         }
