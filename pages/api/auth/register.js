@@ -54,7 +54,7 @@ export default async function handler(req, res) {
         let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
         const verificationLink = `https://pocketcfos.com/auth/redirect?token=${encryptedToken}`
         const emailTemplate = confirmationEmailTemplate(verificationLink, username)
-        sendEmail(email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
+        await sendEmail(email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
         res.status(201).json({ message: 'Created Successfully' });
     } catch (error) {
         res.status(400).json(ErrorCodes.GENERAL_SERVER_ERROR);

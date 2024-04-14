@@ -90,8 +90,6 @@ export default function VerifyEmail() {
     );
 }
 
-
-
 function Logo() {
     return (
         <div className="flex gap-2 justify-center items-center ">
@@ -100,8 +98,6 @@ function Logo() {
         </div>
     )
 }
-
-
 
 function login_validate(values) {
 
@@ -127,3 +123,6 @@ function login_validate(values) {
 
     return errors;
 }
+
+
+

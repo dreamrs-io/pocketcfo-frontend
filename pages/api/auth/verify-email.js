@@ -5,6 +5,7 @@ import { ErrorCodes } from "@/utils/Errors";
 import { getServerAuthSession } from "./[...nextauth]";
 import { confirmationEmailTemplate } from "@/utils/emailTemplates/VerifyEmail";
 import { sendEmail } from "@/lib/mailer";
+import { addEmailToQueue } from "@/lib/queue";
 
 export default async function handler(req, res) {
     if (req.method != 'POST') {
@@ -67,6 +68,13 @@ export default async function handler(req, res) {
             let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
             const verificationLink = `${process.env.NEXTAUTH_URL}/auth/verify-email?token=${encryptedToken}`
             const emailTemplate = confirmationEmailTemplate(verificationLink, session.user.name)
+            const data = {
+                to:session.user.email,
+                from:'"PocketCfos" <verify@pocketcfos.com>',
+                subject:'Email Verification',
+                html:emailTemplate
+            }
+            addEmailToQueue(data)
             const emailSent = await sendEmail(session.user.email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
             if (emailSent){
                 res.status(200).json({ message: 'Verification email sent successfully' });
