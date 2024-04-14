@@ -65,7 +65,7 @@ export default async function handler(req, res) {
     
             const cryption = new Cryption(process.env.APP_KEY)
             let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
-            const verificationLink = `${process.env.NEXTAUTH_URL}/auth/redirect?token=${encryptedToken}`
+            const verificationLink = `${process.env.NEXTAUTH_URL}/auth/verify-email?token=${encryptedToken}`
             const emailTemplate = confirmationEmailTemplate(verificationLink, session.user.name)
             const emailSent = await sendEmail(session.user.email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
             if (emailSent){

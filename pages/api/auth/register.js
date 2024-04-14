@@ -58,6 +58,7 @@ export default async function handler(req, res) {
         res.status(201).json({ message: 'Created Successfully' });
     } catch (error) {
         res.status(400).json(ErrorCodes.GENERAL_SERVER_ERROR);
+        console.log(error)
     }
 
 }

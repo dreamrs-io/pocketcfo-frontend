@@ -8,21 +8,31 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import nextApi from "@/apis/InternalApi";
 import logoSVG from "@/public/assets/logo.svg"
+import { signOut } from "next-auth/react";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function VerifyEmail() {
     const router = useRouter();
     const token = router.query.token;
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        nextApi.verifyEmail(token).then((r)=>{
-            setLoading(false)
-            router.push('/');
-        }).catch((e)=>{
-            router.push('/');
-        })
-    })
+        if (token) {
+            nextApi.verifyEmail(token)
+                .then(() => {
+                    setLoading(false);
+                    signOut({redirect:false})
+                    router.push('/')
+                })
+                .catch((error) => {
+                    console.error('Error verifying email:', error);
+                    setLoading(false);
+                    signOut({redirect:false})
+                    router.push('/')
+                });
+        }
+    }, [token]);
 
     return (
         <>
@@ -33,7 +43,7 @@ export default function VerifyEmail() {
             <div className={`relative h-screen bg-blue-600 flex flex-col justify-center ${inter.className}`}>
                 <div className="flex justify-between h-full items-center ">
                     <div className="bg-white h-full w-full border flex flex-col justify-center items-center right-skew ">
-                        <Logo/>
+                        <Logo />
                         {
                             loading &&
                             <div role="status" className="mt-10">
