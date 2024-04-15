@@ -33,13 +33,12 @@ export default async function handler(req, res) {
         const { id } = req.body;
         try {
             const instance = await Instance.findOne({ _id: id });
-            console.log(instance)
             var credentials = {
                 email: session.user.email,
                 timestamp: Date.now()
             };
 
-            const cryption  = new Cryption(instance.software_credentials.laravel_key)
+            const cryption  = new Cryption(instance.laravel_key)
             let encryptedToken  =  cryption.encrypt(JSON.stringify(credentials));
             const redirectUrl = `http://${instance.domain_name}/auth/redirect?token=${encryptedToken}`
             res.status(200).json({ url : redirectUrl })

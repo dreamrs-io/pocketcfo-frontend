@@ -49,7 +49,7 @@ const webhookHandler = async (req, res) => {
                 return res.status(200).send('Webhook Received Successfully');
             } catch (error) {
                 console.log(`Retry ${retryCount + 1} failed:`, error.message);
-                await new Promise(resolve => setTimeout(resolve, ms))
+                await new Promise(resolve => setTimeout(resolve, 500))
                 retryCount++;
             }
         }

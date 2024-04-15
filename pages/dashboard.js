@@ -11,6 +11,7 @@ import Modal from "@/components/common/Modal";
 import { useFormik } from "formik";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Tooltip } from "react-tippy";
+import { getServerAuthSession } from "./api/auth/[...nextauth]";
 
 
 export default function Dashboard() {
@@ -338,4 +339,29 @@ function InstanceForm({ instance, setIsOpen }) {
 
 
     )
+}
+
+
+
+export async function getServerSideProps(context) {
+
+    const session = await getServerAuthSession(context.req, context.res);
+
+
+    if (!session) {
+        return {
+            redirect: {
+                destination: '/login',
+                permanent: false,
+            },
+        }
+    }
+
+    return {
+        props: {
+
+
+        }
+    }
+
 }
