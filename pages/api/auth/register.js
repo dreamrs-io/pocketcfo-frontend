@@ -1,11 +1,10 @@
 import connectMongo from "@/database/conn";
 import Cryption from "@/lib/encryption";
 import { sendEmail } from "@/lib/mailer";
+import { addEmailToQueue } from "@/lib/queue";
 import User from "@/models/User";
 import { ErrorCodes } from "@/utils/Errors";
 import { confirmationEmailTemplate } from "@/utils/emailTemplates/VerifyEmail";
-const imageUrl = '/assets';
-
 
 
 export default async function handler(req, res) {
@@ -54,7 +53,14 @@ export default async function handler(req, res) {
         let encryptedToken = cryption.encrypt(JSON.stringify(credentials));
         const verificationLink = `https://pocketcfos.com/auth/redirect?token=${encryptedToken}`
         const emailTemplate = confirmationEmailTemplate(verificationLink, username)
-        await sendEmail(email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
+        const data = {
+            to:email,
+            from:'"PocketCfos" <verify@pocketcfos.com>',
+            subject:'Email Verification',
+            html:emailTemplate
+        }
+        const q = await addEmailToQueue(data)
+        // await sendEmail(email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
         res.status(201).json({ message: 'Created Successfully' });
     } catch (error) {
         res.status(400).json(ErrorCodes.GENERAL_SERVER_ERROR);

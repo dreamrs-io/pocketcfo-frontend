@@ -12,8 +12,6 @@ export default async function handler(req, res) {
         res.status(405)
     }
 
-
-
     switch (req.method) {
     case 'POST':
         const { token } = req.body
@@ -74,9 +72,9 @@ export default async function handler(req, res) {
                 subject:'Email Verification',
                 html:emailTemplate
             }
-            addEmailToQueue(data)
-            const emailSent = await sendEmail(session.user.email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
-            if (emailSent){
+            const q = addEmailToQueue(data)
+            // const emailSent = await sendEmail(session.user.email,'"PocketCfos" <verify@pocketcfos.com>','Email Verification', emailTemplate);
+            if (q){
                 res.status(200).json({ message: 'Verification email sent successfully' });
             }else{
                 res.status(500).json(ErrorCodes.ERROR_WHILE_SENDING_VERIFICATION_EMAIL)
