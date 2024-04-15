@@ -14,7 +14,9 @@ export default function Pricing() {
         const checkout_session = await nextApi.getCheckoutSession(priceId);
 
 
-        window.location.href = checkout_session.subscription.url;
+        if (checkout_session.subscription?.url){
+            window.location.href = checkout_session.subscription.url;
+        }
 
 
     }

@@ -6,11 +6,12 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 
 export default async function handler(req, res) {
-
-
     const session = await getServerAuthSession(req, res)
     if (!session) {
         res.status(401).json({ message: 'Unauthorized' });
+    }
+    if(!session.user.verified){
+        res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
     }
 
     let  user  = await User.findOne({_id:session.user.id});

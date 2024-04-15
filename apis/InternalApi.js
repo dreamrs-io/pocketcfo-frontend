@@ -22,7 +22,7 @@ const nextApi = {
             toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
             return response.data;
         } catch (error) {
-            toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
             return error
         }
     },

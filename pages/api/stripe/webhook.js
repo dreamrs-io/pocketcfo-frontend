@@ -30,13 +30,33 @@ const webhookHandler = async (req, res) => {
     }
 
     if (event.type == 'customer.subscription.created') {
-        await addSubscriptionsInDd(event.data.object);
-        res.status(200).send('Webhook Received Successfully');
+        try {
+            await addSubscriptionsInDd(event.data.object);
+            return  res.status(200).send('Webhook Received Successfully');
+        } catch (error) {
+            console.log(error.message)
+            return  res.status(400).send(`Webhook Error: ${error.message}`);
+        }
     }
     if (event.type == 'customer.subscription.updated') {
-        await updateSubscription(event.data.object);
-        res.status(200).send('Webhook Received Successfully');
+
+        let retryCount = 0;
+        const maxRetries = 3;
+
+        while (retryCount < maxRetries) {
+            try {
+                await updateSubscription(event.data.object);
+                return res.status(200).send('Webhook Received Successfully');
+            } catch (error) {
+                console.log(`Retry ${retryCount + 1} failed:`, error.message);
+                await new Promise(resolve => setTimeout(resolve, ms))
+                retryCount++;
+            }
+        }
+        
     }
+
+    return res.status(200).send('Webhook Received Successfully: '+event.type);
 
 }
 export default webhookHandler;
@@ -44,9 +64,7 @@ export default webhookHandler;
 
 async function addSubscriptionsInDd(subscription) {
     try {
-        console.log(subscription)
         const user = await User.findOne({ stripe_customer_id: subscription.customer });
-        console.log(user);
         await Instance.create({
             user_id: user.id,
             stripe_subscription_id: subscription.id,
@@ -54,19 +72,14 @@ async function addSubscriptionsInDd(subscription) {
         });
     } catch (error) {
 
-        console.log(error);
-        res.status(500).json({ error: 'Internal Server Error', message: err.message })
+        throw error; 
 
     }
 }
 
 async function updateSubscription(subscription) {
-
     try {
-
-        console.log(subscription)
         const dBsubscription = await Instance.findOne({ stripe_subscription_id: subscription.id });
-        console.log(dBsubscription)
         dBsubscription.subscription_status = subscription.status;
         if (dBsubscription.status == 2 && subscription.status != 'active') {
             dBsubscription.status == 3
@@ -74,13 +87,8 @@ async function updateSubscription(subscription) {
         await dBsubscription.save();
 
     } catch (error) {
-
-
-        console.log(error);
-        res.status(500).json({ error: 'Internal Server Error', message: err.message })
-
-
+        throw error; 
     }
 
-    //send the webhook event 
+    //send the webhook event
 }

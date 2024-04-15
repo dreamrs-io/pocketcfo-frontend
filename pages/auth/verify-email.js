@@ -23,7 +23,7 @@ export default function VerifyEmail() {
                 .then(() => {
                     setLoading(false);
                     signOut({redirect:false})
-                    router.push('/')
+                    router.push('/login')
                 })
                 .catch((error) => {
                     console.error('Error verifying email:', error);

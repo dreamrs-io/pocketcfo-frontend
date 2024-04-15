@@ -1,6 +1,10 @@
 
 
 const ErrorCodes = {
+    EMAIL_VERIFICATION_REQUIRED:{
+        code:12,
+        message:"Please verify your email first"
+    },
     ERROR_WHILE_SENDING_VERIFICATION_EMAIL:{
         code:12,
         message:"We couldn't send a verification email at the moment"
