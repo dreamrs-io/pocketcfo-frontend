@@ -8,11 +8,12 @@ export default async function handler(req, res) {
         try {
             var credentials = {
                 email: 'admin@mail.com',
-                timestamp: Date.now()
+                domain:process.env.DEMO_APP_DOMAIN,
+                timestamp: Date.now(),
             };
-            const cryption  = new Cryption('base64:jPMAS5iDh5vHWceGzWxS16CkiFH8ssZ7OV4S0kOIw+M=')
+            const cryption  = new Cryption(process.env.APP_KEY)
             let encryptedToken  =  cryption.encrypt(JSON.stringify(credentials));
-            const redirectUrl = `http://demo.pocketcfos.com/auth/redirect?token=${encryptedToken}`
+            const redirectUrl = `${process.env.DEMO_APP_DOMAIN}/auth/redirect?token=${encryptedToken}`
             res.status(200).json({ url : redirectUrl })
             
         } catch (error) {
@@ -33,14 +34,22 @@ export default async function handler(req, res) {
         const { id } = req.body;
         try {
             const instance = await Instance.findOne({ _id: id });
-            var credentials = {
+            let credentials = {
                 email: session.user.email,
+                domain:instance.domain,
                 timestamp: Date.now()
-            };
+            }; 
+            if (process.env.APP_ENV === 'local') {
+                credentials = {
+                    email: 'admin@mail.com',
+                    domain:process.env.DEMO_APP_DOMAIN,
+                    timestamp: Date.now(),
+                };
+            }
 
-            const cryption  = new Cryption(instance.laravel_key)
+            const cryption  = new Cryption(process.env.APP_KEY)
             let encryptedToken  =  cryption.encrypt(JSON.stringify(credentials));
-            const redirectUrl = `http://${instance.domain_name}/auth/redirect?token=${encryptedToken}`
+            const redirectUrl = `${instance.domain_name}/auth/redirect?token=${encryptedToken}`
             res.status(200).json({ url : redirectUrl })
         } catch (error) {
             console.log(error)

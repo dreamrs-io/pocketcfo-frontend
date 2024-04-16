@@ -21,12 +21,12 @@ const instanceSchema = Schema({
     },
     domain_name: {
         type: String,
-        default: 'pocketcfo.com'
+        default: process.env.DEMO_APP_DOMAIN
     },
     status: {
         type: Number,
         required: true,
-        default: 1
+        default: () => process.env.APP_ENV === 'local' ? 2 : 1 
     },
     subscription_status: {
         type: String,

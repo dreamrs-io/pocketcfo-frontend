@@ -20,7 +20,6 @@ export default async function handler(req, res) {
 
     const user = await User.findOne({ email: email });
 
-    console.log()
 
     if (user && user.provider == 'google') {
 

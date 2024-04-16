@@ -2,6 +2,7 @@ import connectMongo from '@/database/conn';
 import Instance from '@/models/Instances';
 import User from '@/models/User';
 import { buffer } from 'micro';
+import axios from 'axios';
 
 const Stripe = require('stripe');
 const stripe = Stripe(process.env.STRIPE_SCERET_KEY);
@@ -85,10 +86,10 @@ async function updateSubscription(subscription) {
             dBsubscription.status == 3
         }
         await dBsubscription.save();
+        //send the webhook event to laravel instance
 
     } catch (error) {
         throw error; 
     }
 
-    //send the webhook event
 }

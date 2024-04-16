@@ -30,7 +30,7 @@ export default async function handler(req, res) {
 
         const session = await stripe.billingPortal.sessions.create({
             customer: user.stripe_customer_id,
-            return_url: 'https://www.pocketcfos.com/dashboard',
+            return_url: process.env.NEXTAUTH_URL+'/dashboard',
         });
 
         res.status(200).json({ session })
