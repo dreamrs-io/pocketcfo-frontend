@@ -39,7 +39,7 @@ export const authOptions = {
                         email: user.email,
                         image: user.image,
                         provider: 'google',
-                        verfied:true
+                        verified:true
                     })
                     user.id = u._id.toString();
                     return { user };
