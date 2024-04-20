@@ -10,11 +10,13 @@ export default async function handler(req, res) {
     if (!session) {
         res.status(401).json({ message: 'Unauthorized' });
     }
-    if(!session.user.verified){
-        res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
-    }
+    
 
     let  user  = await User.findOne({_id:session.user.id});
+
+    if(!user.verified){
+        res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
+    }
 
     if (!user.stripe_customer_id){
 
@@ -37,7 +39,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error.raw.message)
 
         res.status(400).json({error:'Unexpected error Occured'})
 

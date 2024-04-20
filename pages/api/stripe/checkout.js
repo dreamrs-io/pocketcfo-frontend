@@ -13,8 +13,8 @@ export default async function handler(req, res) {
     if (!session) {
         res.status(401).json({ message: 'Unauthorized' });
     }
-    console.log(session.user);
-    if(!session.user.verified){
+    const user = await User.findOne({_id:session.user.id})
+    if(!user.verified){
         res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
     }
 
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
             customer = await stripe.customers.create({
                 email: session.user.email,
             });
-            const user = await User.findOne({_id:session.user.id})
+            
             user.stripe_customer_id= customer.id;
             await user.save();
         } else {
@@ -46,6 +46,8 @@ export default async function handler(req, res) {
     }
 
     try {
+
+        console.log(priceId)
 
         const subscription = await stripe.checkout.sessions.create({
             success_url: process.env.NEXTAUTH_URL+'/dashboard',
