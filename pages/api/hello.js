@@ -1,8 +1,8 @@
 
 
-export const config = {
-    maxDuration: 300,
-};
+// export const config = {
+//     maxDuration: 300,
+// };
    
 
 export default async function handler(req, res) {

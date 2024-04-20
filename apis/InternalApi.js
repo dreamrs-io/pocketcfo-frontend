@@ -16,6 +16,7 @@ const nextApi = {
 
     getCheckoutSession: async function (priceId) {
         const id = toast.loading("Subscribing...");
+        console.log(priceId)
         try {
 
             const response = await axiosClient.post(`/stripe/checkout`, { priceId: priceId });

@@ -17,6 +17,8 @@ export default async function handler(req, res) {
         res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
     }
 
+    const { priceId }  = req.body
+
     let customer = ''
 
     
@@ -35,7 +37,7 @@ export default async function handler(req, res) {
         }
     } catch (error) {
 
-        console.log(error);
+        console.log(error.raw.message);
 
 
         res.status(400).json({error:'Error Occured while creating the new customer'})
@@ -48,7 +50,7 @@ export default async function handler(req, res) {
             success_url: process.env.NEXTAUTH_URL+'/dashboard',
             line_items: [
                 {
-                    price: 'price_1P3kf9KOMTDoOrE4BmYyjBn0',
+                    price: priceId,
                     quantity:1
                 },
             ],
@@ -60,7 +62,7 @@ export default async function handler(req, res) {
 
     } catch (error) {
 
-        console.log(error)
+        console.log(error.raw.message)
 
         res.status(400).json({error:'Unexpected error Occured'})
 

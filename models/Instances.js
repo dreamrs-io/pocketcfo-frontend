@@ -26,15 +26,16 @@ const instanceSchema = Schema({
     status: {
         type: Number,
         required: true,
-        default: () => process.env.APP_ENV === 'local' ? 2 : 1 
+        default: () => { if (process.env.APP_ENV === 'local' || process.env.APP_ENV === 'staging') {
+            return 2;
+        } else {
+            return 1;
+        }
+        }
     },
     subscription_status: {
         type: String,
         required: true
-    },
-    laravel_key: {
-        type: String,
-        default: null
     },
 }, { timestamps: true });
 

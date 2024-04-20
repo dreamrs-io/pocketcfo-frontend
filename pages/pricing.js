@@ -1,18 +1,25 @@
 import nextApi from "@/apis/InternalApi";
 import ConversionLayout from "@/layouts/ConversionLayout";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 
 export default function Pricing() {
     const [tenure, setTenure] = useState('monthly');
+    const { data: session, } = useSession();
+    const router = useRouter();
 
     async function checkout(priceId) {
 
-        // first we make sure that user is aunthenticated
+        if(!session){
+            router.push('login');
+            return;
+        }
+
 
         const checkout_session = await nextApi.getCheckoutSession(priceId);
-
 
         if (checkout_session.subscription?.url){
             window.location.href = checkout_session.subscription.url;
@@ -33,8 +40,6 @@ export default function Pricing() {
                 <meta name="twitter:title" content='pricing' />
                 <meta property="og:title" content='pricing' />
                 <meta name="twitter:description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-              
-
                 <link rel="canonical" href='https://www.pocketcfos.com/pricing' />
 
             </Head>
@@ -52,7 +57,7 @@ export default function Pricing() {
                         <div className="flex flex-col mt-4">
                             <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(48 * 12 - ((48 * 12) * 0.20)) : 48}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             <div className="flex justify-center my-8">
-                                <button onClick={() => { checkout('price_1OwQpjKOMTDoOrE4VmUZuS11') }} className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
+                                <button onClick={() => { checkout(process.env.NEXT_PUBLIC_STRIPE_PLAN_1) }} className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
                                     Get Started
                                 </button>
                             </div>
@@ -73,7 +78,7 @@ export default function Pricing() {
                         <div className="flex flex-col mt-4">
                             <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(88 * 12 - ((88 * 12) * 0.20)) : 88}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             <div className="flex justify-center my-8">
-                                <button className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
+                                <button onClick={() => { checkout(process.env.NEXT_PUBLIC_STRIPE_PLAN_2) }} className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
                                     Get Started
                                 </button>
                             </div>
@@ -97,7 +102,7 @@ export default function Pricing() {
                                 <p className="text-4xl font-light">${tenure == 'yearly' ? Math.floor(188 * 12 - ((188 * 12) * 0.20)) : 188}<span className="text-sm text-gray-400">/{tenure}</span></p>
                             </div>
                             <div className="flex justify-center my-8">
-                                <button className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
+                                <button onClick={() => { checkout(process.env.NEXT_PUBLIC_STRIPE_PLAN_3) }} className="btn bg-blue-700 text-white font-semibold text-sm max-w-fit focus:ring-2 ring-blue-400">
                                     Get Started
                                 </button>
                             </div>
