@@ -1,13 +1,16 @@
 import '@/styles/globals.css'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-tippy/dist/tippy.css';
 import NextNProgress from 'nextjs-progressbar';
-import { UserProvider } from '@/contexts/userContext';
+import { SessionProvider } from "next-auth/react"
 import { GoogleAnalytics } from '@next/third-parties/google'
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
     return (
         <>
-            <UserProvider>
+
+
+            <SessionProvider session={session}>
                 <NextNProgress color="#00FF00" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true} />
                 <Component {...pageProps} />
                 <GoogleAnalytics gaId="G-1YKLTW9RD3" />
@@ -23,7 +26,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
                     pauseOnHover
                     theme="dark"
                 />
-            </UserProvider>
+            </SessionProvider>
 
         </>
     )

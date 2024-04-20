@@ -7,12 +7,13 @@ import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
 import { Inter } from 'next/font/google';
 import logoSVG from "@/public/assets/logo.svg"
-import apiService from "@/api/ExternalApi";
+import apiService from "@/apis/ExternalApi";
 import { useRouter } from "next/router";
 import { parse } from "cookie-js";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 import Head from "next/head";
+import nextApi from "@/apis/InternalApi";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -26,19 +27,16 @@ export default function Register() {
         validate: register_validate
     })
     async function onSubmit(values) {
-        const res = await apiService.sigup(values);
-        if (res.status == true) {
-            const u = {
-                accessToken: res.data.accessToken,
-                username: res.data.user.name,
-                email: res.data.user.email,
-            }
-            Cookies.set('laravel_token', JSON.stringify(u), { expires: 7 })
-            toast.success('Loggin In')
-            router.push('/');
-        } else {
-            toast.error(res.message);
+        const res = await  nextApi.register(values);
+
+        console.log(res)
+
+        if (res.status==201){
+
+            router.push('/login');
         }
+
+       
 
     }
     return (

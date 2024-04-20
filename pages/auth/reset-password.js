@@ -1,30 +1,28 @@
-import Image from "next/image"
+import Cryption from "@/lib/encryption";
+import { isExpired } from "@/utils/helper";
+import { Inter } from "next/font/google";
+import Head from "next/head";
+import Image from "next/image";
 import loginSvg from '@/public/assets/login.svg'
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import nextApi from "@/apis/InternalApi";
+import logoSVG from "@/public/assets/logo.svg"
 import Link from "next/link";
 import Button from "@/components/common/Button";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { useFormik } from "formik";
-import { Inter } from 'next/font/google';
-import logoSVG from "@/public/assets/logo.svg"
-import { useRouter } from "next/router";
-import { toast } from "react-toastify";
-import apiService from "@/apis/ExternalApi";
-import Cookies from "js-cookie";
-import Head from "next/head";
-import { signIn } from "next-auth/react"
-import { getServerAuthSession } from "./api/auth/[...nextauth]";
+
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Login() {
+export default function VerifyEmail() {
 
     const router = useRouter();
 
 
     const formik = useFormik({
         initialValues: {
-            email: '',
-            password: ''
+            password: '',
+            confirm_password:''
         },
         validate: login_validate,
         onSubmit
@@ -48,11 +46,12 @@ export default function Login() {
         }
 
     }
+    
 
     return (
         <>
             <Head>
-                <title>PocketCFO | Login</title>
+                <title>PocketCFO | Reset Password</title>
                 <link rel="canonical" href='https://www.pocketcfos.com/login' />
             </Head>
             <div className={`relative h-screen bg-blue-600 flex flex-col justify-center ${inter.className}`}>
@@ -60,48 +59,36 @@ export default function Login() {
                     <div className="bg-white h-full w-full     border flex flex-col justify-center items-center right-skew ">
                         <form onSubmit={formik.handleSubmit} className="w-2/4   ">
                             <Logo />
-                            <h2 className="text-xl font-bold text-left my-6 ">Login to start </h2>
-                            <div className="my-4">
-                                <label className="input-wrapper">Email</label>
-                                <input className={`input-box  ${formik.errors.email && formik.touched.email ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                                    type='text' id='email' placeholder="jhon Dhoe" {...formik.getFieldProps('email')} />
-                                {formik.errors.email && formik.touched.email ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.email}</div> : <></>}
-                            </div>
+                            <h2 className="text-xl font-bold text-left my-6 ">Reset your password</h2>
                             <div className="my-4">
                                 <label className="input-wrapper">Password</label>
                                 <input className={`input-box  ${formik.errors.password && formik.touched.password ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
                                     type='password' id='password' placeholder="••••••••" {...formik.getFieldProps('password')} />
                                 {formik.errors.password && formik.touched.password ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password}</div> : <></>}
                             </div>
+                            <div className="my-4">
+                                <label className="input-wrapper">Confirm Password</label>
+                                <input className={`input-box  ${formik.errors.confirm_password && formik.touched.confirm_password ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
+                                    type='confirm_password' id='confirm_password' placeholder="••••••••" {...formik.getFieldProps('confirm_password')} />
+                                {formik.errors.confirm_password && formik.touched.confirm_password ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.confirm_password}</div> : <></>}
+                            </div>
 
-                            <div className="flex  justify-end" >
-                                <Link href={'/recover'} className={`mt-1  hover:underline`}  >
-                                    Forgot Password
-                                </Link>
-                            </div>
+
                             <div className="flex flex-col gap-2 mt-4">
-                                <Button type='submit' label="Login" width="w-full" />
-                                <Button type='button' id='google' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
+                                <Button type='submit' label="Reset" width="w-full" />
                             </div>
-                            <div className="flex  justify-center mt-4 items-center gap-2" >
-                                <p className="text-gray-400 text-sm">{"Don't have an account yet"}</p>
-                                <Link href={'/register'} className={` hover:underline`}  >
-                                    Signup Here
-                                </Link>
-                            </div>
+                            
                         </form>
                     </div>
 
                     <div className="w-full hidden md:block animate-bounce">
                         <Image src={loginSvg} width={900} alt="login" />
                     </div>
-
                 </div>
             </div>
         </>
     );
 }
-
 
 function Logo() {
     return (
@@ -116,12 +103,7 @@ function login_validate(values) {
 
     const errors = {};
 
-
-    if (!values.email) {
-        errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-        errors.email = 'Invalid email address';
-    }
+    // validation for password
     if (!values.password) {
         errors.password = "Required";
     } else if (values.password.length < 8 || values.password.length > 20) {
@@ -129,32 +111,18 @@ function login_validate(values) {
     } else if (values.password.includes(" ")) {
         errors.password = "Invalid Password";
     }
+
+    // validate confirm password
+    if (!values.confirm_password) {
+        errors.confirm_password = "Required";
+    } else if (values.password !== values.confirm_password) {
+        errors.confirm_password = "Password Not Match...!"
+    } else if (values.confirm_password.includes(" ")) {
+        errors.confirm_password = "Invalid Confirm Password"
+    }
+
     return errors;
 }
 
 
-export async function getServerSideProps(context) {
-
-    const session = await getServerAuthSession(context.req, context.res);
-
-
-    if (session) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        }
-    }
-
-    return {
-        props: {
-
-
-        }
-    }
-
-
-
-}
 
