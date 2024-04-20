@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     if (!session) {
         res.status(401).json({ message: 'Unauthorized' });
     }
+    console.log(session.user);
     if(!session.user.verified){
         res.status(400).json(ErrorCodes.EMAIL_VERIFICATION_REQUIRED);
     }
