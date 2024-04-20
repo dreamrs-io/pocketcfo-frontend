@@ -8,24 +8,43 @@ const axiosClient = axios.create({
     }
 });
 
+const buildQueryString = (queryParams) => {
+    const queryString = Object.keys(queryParams)
+        .map((key) => {
+            const value = queryParams[key];
+            return value !== undefined ? `${encodeURIComponent(key)}=${encodeURIComponent(value)}` : null;
+        })
+        .filter(Boolean)
+        .join('&');
+
+    return queryString ? `?${queryString}` : '';
+};
+
 const wordpressApi = {
 
-    getPosts:async function(){
+    getPosts: async function (params) {
 
-        try 
-        {
-            const res = await axiosClient.get();
-            return res.data  
+     
+
+        const queryParams = {
+            per_page: params?.limit || undefined
+        };
+
+        const query = buildQueryString(queryParams);
+
+
+        try {
+            const res = await axiosClient.get(query);
+            return res.data
         } catch (error) {
             toast.error('Error while reteriving blog posts')
             return [];
         }
     },
-    getPostBySlug: async function(slug){
-        try 
-        {
-            const res = await axiosClient.get('?slug='+slug)
-            return res.data  
+    getPostBySlug: async function (slug) {
+        try {
+            const res = await axiosClient.get('?slug=' + slug)
+            return res.data
         } catch (error) {
             toast.error('Error while reteriving blog posts')
             return [];
@@ -36,8 +55,8 @@ const wordpressApi = {
     }
 
 
-    
-  
+
+
 }
 
 export default wordpressApi;

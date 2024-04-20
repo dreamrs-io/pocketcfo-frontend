@@ -1,22 +1,13 @@
-import wordpressApi from "@/apis/WordpressApi";
-import MainLayout from "@/layouts/MainLayout";
 import moment from "moment";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Blogs({ blogs }) {
-
+const Blogs = ({ blogs }) => {
     return (
-        <MainLayout>
-            <Head>
-                <title>PocketCFO | Blogs</title>
-                <meta name="description" content='Our team of seasoned financial experts is dedicated to providing you with the guidance and support you need to navigate the complexities of the financial world' />
-                <link rel="canonical" href='https://www.pocketcfos.com/blogs' />
-            </Head>
+        <div>
             <h1 className="p-6 text-center">Our Blogs</h1>
-            <div className="min-h-screen">
-                <div className="max-w-7xl mx-auto my-16 grid grid-cols-4 gap-4">
+            <div className="">
+                <div className="max-w-7xl mx-auto mt-16 mb-16 grid grid-cols-4 gap-4">
                     {
                         blogs.map((i) => (
 
@@ -32,12 +23,9 @@ export default function Blogs({ blogs }) {
                     <h3 className="text-center text-gray-500">No blogs at the moment</h3>
                 }
             </div>
-        </MainLayout>
-
-
+        </div>
     );
-}
-
+};
 
 
 function Article({ blog }) {
@@ -60,21 +48,4 @@ function Article({ blog }) {
     );
 
 }
-
-
-export async function getServerSideProps() {
-
-
-    const blogs = await wordpressApi.getPosts();
-
-
-
-    return {
-
-        props: {
-
-            blogs
-
-        }
-    }
-}
+export default Blogs;

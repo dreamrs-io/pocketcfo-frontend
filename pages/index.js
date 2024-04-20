@@ -8,11 +8,13 @@ import Sections from "@/components/landing/Sections";
 import UseCases from "@/components/landing/UseCases";
 import MainLayout from "@/layouts/MainLayout";
 import Solutions from "@/components/landing/Solutions";
+import wordpressApi from "@/apis/WordpressApi";
+import Blogs from "@/components/common/Blogs";
 
 
 
 
-export default function Home() {
+export default function Home({blogs}) {
     return (
         <MainLayout>
             <Head>
@@ -31,17 +33,31 @@ export default function Home() {
             <UseCases />
             <Solutions />
             <Reason />
-            {/* <LTools/> */}
-            {/* <Clients/> */}
             <Pricing />
+            <Blogs blogs={blogs}/>
+            
             <div className="border-t">
                 <div className="max-w-7xl mx-auto my-10 p-2 lg:p-6">
                     <Tools />
                 </div>
             </div>
-
-            {/* {user?.map((i)=>(<p>{i}</p>))} */}
         </MainLayout>
     )
 }
 
+export async function getServerSideProps() {
+
+
+    const blogs = await wordpressApi.getPosts({limit:4});
+
+
+
+    return {
+
+        props: {
+
+            blogs
+
+        }
+    }
+}
