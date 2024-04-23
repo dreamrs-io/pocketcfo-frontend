@@ -1,7 +1,6 @@
 import { ErrorCodes } from "@/utils/Errors";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { resolve } from "styled-jsx/css";
 const axiosClient = axios.create({
     baseURL: `${process.env.NEXT_PUBLIC_BACKEND_API}`,
     withCredentials: true,
@@ -36,8 +35,8 @@ const nextApi = {
             toast.update(id, { render: "Redirecting..", type: "success", isLoading: false });
             return response.data;
         } catch (error) {
-            
-            if (error.response.data.code =='1000'){
+
+            if (error.response.data.code == '1000') {
 
                 toast.update(id, { autoClose: 900, render: ErrorCodes.NO_ACTIVE_SUBSCRIPTIONS.message, type: "warn", isLoading: false });
 
@@ -45,7 +44,7 @@ const nextApi = {
 
             }
             toast.update(id, { autoClose: 900, render: "Error Occured", type: "error", isLoading: false });
-            return null ;
+            return null;
         }
 
 
@@ -61,26 +60,26 @@ const nextApi = {
 
         }
     },
-    updateInstance: async function ( data ) {
+    updateInstance: async function (data) {
         const id = toast.loading('Updating......');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
             const response = await axiosClient.post(`/instances`, data);
-            toast.update(id, { autoClose:1000, render: "Updated "+ data.name + " successfully", type: "success", isLoading: false });
+            toast.update(id, { autoClose: 1000, render: "Updated " + data.name + " successfully", type: "success", isLoading: false });
             console.log(response);
             return response.data;
         } catch (error) {
-            toast.update(id, {  autoClose:1000, render: error.response.data.message , type: "error", isLoading: false , });
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false, });
         }
 
 
     },
-    redirectInstance: async function ( data ) {
+    redirectInstance: async function (data) {
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
             const response = await axiosClient.post(`/instances/authorize`, data);
-            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 900 });
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false, autoClose: 900 });
             await new Promise(resolve => setTimeout(resolve, 1000));
             return response.data;
         } catch (error) {
@@ -90,12 +89,12 @@ const nextApi = {
 
 
     },
-    redirectToDemo:async function(){
+    redirectToDemo: async function () {
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
             const response = await axiosClient.get(`/instances/authorize`);
-            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false,autoClose: 900 });
+            toast.update(id, { render: "Redirecting....", type: "success", isLoading: false, autoClose: 900 });
             await new Promise(resolve => setTimeout(resolve, 1000));
             return response.data;
         } catch (error) {
@@ -106,11 +105,11 @@ const nextApi = {
 
 
     },
-    register:async function(data){
+    register: async function (data) {
         const id = toast.loading('Please wait....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
-            const response = await axiosClient.post(`/auth/register`,data);
+            const response = await axiosClient.post(`/auth/register`, data);
             toast.update(id, { render: "Redirecting....", type: "success", isLoading: false, autoClose: 900 });
             return response;
         } catch (error) {
@@ -118,11 +117,11 @@ const nextApi = {
             return error
         }
     },
-    verifyEmail:async function(token){
+    verifyEmail: async function (token) {
         const id = toast.loading('Verifying your email please wait.....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
-            const response = await axiosClient.post(`/auth/verify-email`,{token:token});
+            const response = await axiosClient.post(`/auth/verify-email`, { token: token });
             toast.update(id, { render: "Email verified redirecting.......", type: "success", isLoading: false, autoClose: 1500 });
             return response;
         } catch (error) {
@@ -131,7 +130,7 @@ const nextApi = {
         }
 
     },
-    requestNewEmailVerification:async function(){
+    requestNewEmailVerification: async function () {
         const id = toast.loading('Sending verification email.....');
         await new Promise(resolve => setTimeout(resolve, 2000));
         try {
@@ -143,10 +142,22 @@ const nextApi = {
             toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
             return error
         }
+    },
+    async restartSubscription(subscriptionId) {
+
+        const id = toast.loading('Restarting subscription.....');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        try {
+            const response = await axiosClient.post(`/stripe/restart-subscription`,{subscriptionId:subscriptionId});
+            toast.update(id, { render: "Redirecting.....", type: "success", isLoading: false, autoClose: 1500 });
+            return response.data;
+        } catch (error) {
+            console.log(error)
+            toast.update(id, { autoClose: 1000, render: error.response.data.message, type: "error", isLoading: false });
+            return error
+        }
+
     }
-
-
-
 
 }
 

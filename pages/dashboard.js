@@ -4,7 +4,7 @@ import { MdAdd, MdDelete, MdEdit } from "react-icons/md";
 import { GoDotFill } from "react-icons/go";
 import { Fragment, useEffect, useState } from "react";
 import nextApi from "@/apis/InternalApi";
-import { GET_INSTANCE_STATUS, GET_SUBSCRIPTION_STATUS, INSTANCE_STATUS } from "@/constants";
+import { GET_SUBSCRIPTION_STATUS, } from "@/constants";
 import moment from "moment";
 import { toast } from "react-toastify";
 import Modal from "@/components/common/Modal";
@@ -134,7 +134,27 @@ function SingleInstance({ i }) {
 
     }
 
+    async function restartSubscription(){
+
+        // if(!session){
+        //     router.push('login');
+        //     return;
+        // }
+
+        const checkout_session = await nextApi.restartSubscription(i._id);
+
+        if (checkout_session.subscription?.url){
+            window.location.href = checkout_session.subscription.url;
+        }
+
+
+    }
+
     async function accessAdmin() {
+        if (!i.instance_aws_id){
+            toast.warn('Please wait while we setup your instance we will notify you at your email',{autoClose: 3000 })
+            return;
+        }
         const redirect_url = await nextApi.redirectInstance({ id: i._id })
 
         if (redirect_url.url) {
@@ -147,7 +167,7 @@ function SingleInstance({ i }) {
 
     useEffect(() => {
         if (!(i.subscription_status == 'active')) {
-            toast.error('Your payment status is ' + i.subscription_status.toUpperCase(), {
+            toast.error('Your subscription is ' + i.subscription_status, {
                 position: toast.POSITION.TOP_RIGHT
             })
             return;
@@ -176,17 +196,23 @@ function SingleInstance({ i }) {
                 <div className="flex justify-between items-center mt-4 ">
                     <Tooltip
                         // followCursor
-                        html={<p className="text-xs">{GET_INSTANCE_STATUS(i.status,i.subscription_status).message}</p>}
+                        html={<p className="text-xs">{GET_SUBSCRIPTION_STATUS(i.subscription_status).message}</p>}
                         position="bottom"
                         trigger="mouseenter"
                         arrow={true}
-                        
+
                     >
-                        <button disabled={i.status == 1 } onClick={(e) => { e.stopPropagation(); accessAdmin() }} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
+                        <button disabled={i.status == 1} onClick={(e) => { e.stopPropagation(); accessAdmin() }} className="disabled:cursor-not-allowed  text-xs text-blue-500 flex items-center justify-center border py-2 px-4 rounded-md border-blue-500 font-bold hover:bg-blue-500 transition-all duration-150 hover:text-white">
                             Access Admin
                         </button>
 
+
                     </Tooltip>
+                    { i.subscription_status != 'active' &&
+                        <button disabled={i.status == 1} onClick={(e) => { e.stopPropagation(); restartSubscription() }} className="disabled:cursor-not-allowed  text-xs text-yellow-500 flex items-center justify-center border py-2 px-4 rounded-md border-yellow-500 font-bold hover:bg-yellow-500 transition-all duration-150 hover:text-white">
+                            Restart Subscription
+                        </button>
+                    }
                 </div>
             </div>
         </>
@@ -219,24 +245,6 @@ function Loader() {
 }
 
 function InstanceForm({ instance, setIsOpen }) {
-
-    // const [showPassword, setShowPassword] = useState(false);
-
-    // const formik = useFormik({
-    //     initialValues: {
-    //         password: instance.software_credentials.password,
-    //         email: instance.software_credentials.email,
-
-    //     },
-    //     validate: instance_form_validate,
-    //     onSubmit
-    // })
-    // async function onSubmit(values) {
-
-    //     const r = await nextApi.updatedInstancePasswrod(instance._id, values);
-    //     setIsOpen(false);
-    // }
-
 
 
     const nameFormik = useFormik({
@@ -286,54 +294,7 @@ function InstanceForm({ instance, setIsOpen }) {
 
 
             </form>
-            {/* <form onSubmit={formik.handleSubmit} className="w-full">
-                <p className="text-sm font-semibold text-center mt-10">Your email and password is required for your software to be launched and access it</p>
-                <div className="my-4">
-                    <input type="hidden" {...formik.getFieldProps('id')} />
-                    <label className="input-wrapper !text-xs">Email</label>
-                    <input className={`input-box-sm  ${formik.errors.email && formik.touched.email ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                        type='text' id='email' placeholder="jhon Dhoe" {...formik.getFieldProps('email')} />
-                    {formik.errors.email && formik.touched.email ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.email}</div> : <></>}
-                </div>
-                <div className="my-4 relative">
-                    <div className="text-gray-600 absolute bottom-1 right-4 cursor-pointer">
-                        {
-                            showPassword ?
-                                <IoIosEye size={24} onClick={() => setShowPassword(false)} />
-                                :
-                                <IoIosEyeOff size={24} onClick={() => setShowPassword(true)} />
-                        }
-                    </div>
-                    <label className="input-wrapper !text-xs">Password</label>
-                    <input className={`input-box-sm  ${formik.errors.password && formik.touched.password ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
-                        type={showPassword ? 'text' : 'password'} id='password' placeholder="••••••••" {...formik.getFieldProps('password')} />
-
-                </div>
-                {formik.errors.password && formik.touched.password ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password}</div> : <></>}
-                <div>
-                    <p className="font-bold text-xs text-gray-500 ">{'Created ' + moment(instance.createdAt).fromNow()}</p>
-                    <p className="font-bold text-xs text-gray-500 ">{'Last update ' + moment(instance.updatedAt).fromNow()}</p>
-                </div>
-                <div className="mt-4 flex  gap-2 justify-end ">
-                    <button
-                        type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-                        onClick={() => setIsOpen(false)}
-                    >
-                        Cancel
-                    </button>
-                    <button
-                        disabled={!formik.dirty || !formik.isValid}
-                        type="submit"
-                        className="disabled:cursor-not-allowed inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-
-                    >
-                        Update
-                    </button>
-                </div>
-
-            </form> */}
-
+            
         </div>
 
 
