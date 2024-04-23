@@ -1,27 +1,3 @@
-
-
-const INSTANCE_STATUS = [
-    {
-        id: 1,
-        name: "Initializing Instance",
-        color: '#60a5fa',
-        message: "Your instance is currently being set up. Please wait for initialization to complete."
-    },
-    {
-        id: 2,
-        name: "Working",
-        color: '#34d399',
-        message: "Your instance is up and running smoothly press to access it."
-    },
-    {
-        id: 3,
-        name: "Paused",
-        color: '#ffeeaa',
-        message: "Your instance is currently paused. Recurring payment may have failed. Please update your payment information."
-    },
-];
-
-
 const INSTANCE_SUBSCRIPTION_STATUS = [
     {
         id: 1,
@@ -79,18 +55,11 @@ function GET_SUBSCRIPTION_STATUS(status){
 }
 
 
-function GET_INSTANCE_STATUS(instanceStatus,subscriptionStatus){
-    if (subscriptionStatus!='active'){
-        return GET_SUBSCRIPTION_STATUS(subscriptionStatus)
-    } else if (subscriptionStatus=='active'){
-        return INSTANCE_STATUS.find(s => s.id == instanceStatus)
-    }
-    
-}
+
 
 
 export {
 
-    INSTANCE_STATUS,GET_SUBSCRIPTION_STATUS,GET_INSTANCE_STATUS
+    GET_SUBSCRIPTION_STATUS,
 
 }

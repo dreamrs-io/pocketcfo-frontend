@@ -46,8 +46,8 @@ export default function Pricing() {
             <div className="mx-auto max-w-6xl my-12">
                 <h2 className="text-center mb-4">Pocket CFO&apos;s That Fits Your Budget </h2>
                 <div className="flex justify-center">
-                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'monthly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('monthly') }}>Monthly</button>
-                    <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'yearly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('yearly') }}>Yearly (20% off)</button>
+                    {/* <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'monthly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('monthly') }}>Monthly</button> */}
+                    {/* <button className={`px-4 py-2 border rounded-sm text-sm font-semibold ${tenure == 'yearly' ? 'bg-blue-200' : ''}`} onClick={() => { setTenure('yearly') }}>Yearly (20% off)</button> */}
                 </div>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 transition-all duration-200 my-10 max-w-4xl mx-auto">
                     <div className="p-4 bg-gray-100 rounded-md w-full ">

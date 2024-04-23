@@ -23,20 +23,14 @@ const instanceSchema = Schema({
         type: String,
         default: process.env.DEMO_APP_DOMAIN
     },
-    status: {
-        type: Number,
-        required: true,
-        default: () => { if (process.env.APP_ENV === 'local' || process.env.APP_ENV === 'staging') {
-            return 2;
-        } else {
-            return 1;
-        }
-        }
-    },
     subscription_status: {
         type: String,
         required: true
     },
+    stripe_plan_id :{
+        type: String,
+        required: true
+    }
 }, { timestamps: true });
 
 const Instance = models.instance || model('instance', instanceSchema);
