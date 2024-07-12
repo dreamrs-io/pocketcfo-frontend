@@ -60,7 +60,7 @@ export default function NavBar() {
                             <Link href={'/docs'} className="link">Docs</Link>
                             <Link href={'/blogs'} className="link">Blogs</Link>
                             {/* <button id="demo" onClick={() => { handleClick() }} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button> */}
-                            <Link href={'https://test.pocketcfos.com/auth/signup'} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</Link>
+                            <Link href={'https://test.pocketcfos.com/auth/signup' } className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</Link>
                         </ul>
                         <ul className="hidden md:flex items-center gap-4 border-l pl-4">
                             {
