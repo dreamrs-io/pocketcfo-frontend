@@ -25,3 +25,13 @@ function Logo() {
         </Link>
     )
 }
+
+
+
+export async function getServerSideProps(){
+
+    return {
+        notFound: true,
+    };
+
+}

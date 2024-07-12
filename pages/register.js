@@ -53,7 +53,7 @@ export default function Register() {
                         <form onSubmit={formik.handleSubmit} className="w-2/4   ">
                             <Logo />
                             <h2 className="text-xl font-bold text-left my-6 ">Register to start </h2>
-                            <div className="my-4">
+                            {/* <div className="my-4">
                                 <label className="input-wrapper">Full Name</label>
                                 <input className={`input-box  ${formik.errors.username && formik.touched.username ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
                                     type='text' id='username' placeholder="jhon Dhoe" {...formik.getFieldProps('username')} />
@@ -76,8 +76,8 @@ export default function Register() {
                                 <input className={`input-box  ${formik.errors.password_confirmation && formik.touched.password_confirmation ? 'focus:ring-rose-600 focus:border-rose-600' : ''} `}
                                     type='password' id='password_confirmation' placeholder="••••••••" {...formik.getFieldProps('password_confirmation')} />
                                 {formik.errors.password_confirmation && formik.touched.password_confirmation ? <div className='mt-2 font-bold text-sm text-rose-500'>{formik.errors.password_confirmation}</div> : <></>}
-                            </div>
-                            <button type="submit" className="btn-login w-full disabled:bg-gray-300 disabled:border-transparent" disabled={!(formik.isValid && formik.dirty)} >Register</button>
+                            </div> */}
+                            {/* <button type="submit" className="btn-login w-full disabled:bg-gray-300 disabled:border-transparent" disabled={!(formik.isValid && formik.dirty)} >Register</button> */}
                             <div className="flex flex-col gap-2 mt-4">
                                 <Button type='button' label="Sign In with Google" onClick={() => { signIn('google') }} inverted='true' width="w-full" ico={<FcGoogle className="w-6 h-6" />} />
                                 {/* <Button label="Sign In with Github" inverted='true' width="w-full" ico={<FaGithub className="w-6 h-6" />} /> */}

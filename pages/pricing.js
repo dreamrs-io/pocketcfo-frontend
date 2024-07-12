@@ -13,6 +13,8 @@ export default function Pricing() {
 
     async function checkout(priceId) {
 
+        return;
+
         if(!session){
             router.push('login');
             return;

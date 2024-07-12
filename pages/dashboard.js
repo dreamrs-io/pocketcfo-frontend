@@ -306,6 +306,12 @@ function InstanceForm({ instance, setIsOpen }) {
 
 export async function getServerSideProps(context) {
 
+
+
+    return {
+        notFound: true,
+    };
+
     const session = await getServerAuthSession(context.req, context.res);
 
 

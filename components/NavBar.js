@@ -59,7 +59,8 @@ export default function NavBar() {
                             <Link href={'/pricing'} className="link">Pricing</Link>
                             <Link href={'/docs'} className="link">Docs</Link>
                             <Link href={'/blogs'} className="link">Blogs</Link>
-                            <button id="demo" onClick={() => { handleClick() }} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button>
+                            {/* <button id="demo" onClick={() => { handleClick() }} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button> */}
+                            <Link href={'https://test.pocketcfos.com/auth/signup' } className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</Link>
                         </ul>
                         <ul className="hidden md:flex items-center gap-4 border-l pl-4">
                             {
@@ -136,8 +137,8 @@ function Profile({ user }) {
                     </div>
                     <div className="p-2">
 
-                        <button onClick={() => { portall() }} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Subscriptions</button>
-                        <Link href={'/dashboard'} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Dashboard</Link>
+                        {/* <button onClick={() => { portall() }} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Subscriptions</button> */}
+                        {/* <Link href={'/dashboard'} className="px-3 py-2 hover:bg-gray-100 w-full block text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs">Dashboard</Link> */}
                         <button onClick={() => { signOut() }} className="px-3 py-2 hover:bg-gray-100 w-full text-gray-600 font-semibold transition-all duration-300 rounded-sm text-left text-xs ">
                             <span>Logout </span>
                         </button>

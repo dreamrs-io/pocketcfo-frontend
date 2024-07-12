@@ -20,3 +20,12 @@ export default function Subscriptions() {
         </UserLayout>
     );
 }
+
+
+export async function getServerSideProps(){
+
+    return {
+        notFound: true,
+    };
+
+}
