@@ -57,7 +57,7 @@ export default function NavBar() {
                         <ul className="hidden sm:flex items-center gap-6  ">
                             {/* <li className="link">Templates</li> */}
                             <Link href={'/pricing'} className="link">Pricing</Link>
-                            <Link href={'/docs'} className="link">Docs</Link>
+                            {/* <Link href={'/docs'} className="link">Docs</Link> */}
                             <Link href={'/blogs'} className="link">Blogs</Link>
                             {/* <button id="demo" onClick={() => { handleClick() }} className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</button> */}
                             <Link href={'https://test.pocketcfos.com/auth/signup' } className="  px-4 py-1 bg-blue-600 text-white rounded-sm">Demo</Link>
